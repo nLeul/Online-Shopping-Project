@@ -19,7 +19,7 @@ app.use(expressSession({ secret:'max', saveUninitialized:false, resave:false }))
 app.use(flash());
 
  app.use(userRoutes);
-// app.use(productRoutes);
+app.use(productRoutes);
 
 // app.get("/",(req,res)=>{
 //     res.send("done!! ");
