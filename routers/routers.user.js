@@ -10,8 +10,11 @@ routes.get('/confirm/:userid', userController.getConfirmationPage);
 routes.post('/confirm', userController.postConfirmation);
 
 routes.get('/login', userController.getLoginPage);
+routes.post('/login', userController.postLogin);
 
 routes.get('/forgot-password', userController.getForgotPasswordPage);
 routes.post('/forgot-password', userController.postForgotPassword);
+
+routes.get('/success', userController.successPage);
 
 module.exports = routes;
