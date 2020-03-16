@@ -1,0 +1,65 @@
+const bcrypt = require('bcryptjs');
+const User = require('../models/models.user');
+const UserService = require('../service/service.user');
+
+exports.getSignUpPage = (req,res,next)=>{
+    let msgs;
+   let flashArr = req.flash('signup-error');
+    if(flashArr.length > 0){
+        msgs=flashArr
+    }else{
+        msgs=null;
+    } 
+      res.render("user/sign-up",{ title:"sign up", errMsg: msgs, isAuthenticated: false, errConfirm: req.flash('signup-success')});
+}
+
+exports.postSignUp = (req,res,next)=>{
+     if(UserService.checkSignupValidation(req)){
+       User.findOne({email : req.body.email})
+       .then(user=>{
+           if(user){
+               req.flash("exist-user","you are  our customer, if U forget password please click forget button");
+               res.redirect('/login');
+           }else{
+          
+          bcrypt.hash(req.body.password, 12)
+          .then(hashPW => {
+              UserService.createNewUser(req,hashPW).save()
+              .then(savedUser=>{
+               UserService.sendEmailToCustomer(savedUser.email);
+                res.redirect('/confirm/'+savedUser._id);
+              });
+          });
+        }
+       })
+       .catch(e=>console.log(e));
+     }else{
+        res.redirect('/sign-up');
+     }
+}
+
+exports.getConfirmationPage = (req,res,next)=>{
+      res.render('user/confirm-page', { title:"confirmation page", userid:req.params.userid});
+}
+exports.postConfirmation = (req,res,next)=>{
+    User.findById(req.body.userid)
+    .then(user=>{
+        console.log(req.body.confirm);
+        console.log(UserService.hashCode(user.email));
+        if(req.body.confirm == UserService.hashCode(user.email)){
+            req.flash('signup-success',"your signup is Succesfull !!, Login now.");
+            res.redirect('/login');
+        }else{
+            req.flash('signup-success',"your confirmation is not correct, please re-signup. ");
+            User.findByIdAndRemove(req.body.userid)
+            .then(r=>{
+                res.redirect('/sign-up');
+            });
+        }
+    })
+    .catch(e=>console.log(e));
+}
+
+exports.getLoginPage = (req,res,next)=>{ 
+     res.render("user/login",{ title:"login", isAuthenticated: false, errConfirm: req.flash('signup-success'), existUserMsg: req.flash('exist-user') });
+}

@@ -1,0 +1,38 @@
+<%- include('../fragments/head.ejs') %>
+<body>
+    
+    <%- include('../fragments/navigation.ejs') %>
+    <link rel="stylesheet" href="/css/login.css" />
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="/logo/logo.png" id="icon" alt="User Icon" />
+      </div>
+  
+      <!-- Login Form -->
+      <form>
+        <input type="text" id="login" class="fadeIn second" name="email" placeholder="Email">
+        <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+        <input type="submit" class="fadeIn fourth" value="Log In">
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>
+
+  <% if (errConfirm) { %>
+    <h3><%= errConfirm %></h3>
+<% } %>
+
+<% if (existUserMsg) { %>
+    <h3><%= existUserMsg %></h3>
+<% } %>
+
+  <%- include('../fragments/footer.ejs') %>  

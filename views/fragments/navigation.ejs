@@ -1,58 +1,60 @@
 <div class="page-wrapper">
-    ​
-        <!-- MENU SIDEBAR-->
-        <aside class="menu-sidebar d-none d-lg-block">
-            <div class="logo">
-                <!-- <a href="#">
-              <img src="public/images/logo.jpg" alt="martLogo" >
-            </a> -->
+
+    <!-- MENU SIDEBAR-->
+    <aside class="menu-sidebar d-none d-lg-block" style="background-color: rgb(212, 212, 212);">
+      <div class="logo">
+         <a href="#">
+          <img src="/logo/logo.png" alt="martLogo" >
+        </a> 
+      </div>
+      <div class="menu-sidebar-content js-scrollbar1">
+        <nav class="navbar-sidebar">
+          <ul class="list-unstyled navbar-list">
+            <li>
+              <a href="/savePrd">Add Product</a>
+            </li>
+            <li>
+              <a href="#">Edit Product</a>
+            </li>
+            <li>
+              <a href="#">Delete Product</a>
+            </li>
+            <li>
+              <a href="/findPrdByType">Get Product By Type</a>
+            </li>
+            <li>
+              <a href="/allCartPrd">Carts</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+    <!-- END MENU SIDEBAR-->
+  
+    <div class="page-container">
+      <!-- HEADER DESKTOP-->
+      <header class="header-desktop">
+        <div class="section-content section-content-p30">
+          <div class="container-fluid">
+            <div class="header-wrap">
+              <form class="form-header" onsubmit="return false;" method="GET">
+                <input class="au-input au-input-xl" type="text" name="search"
+                  placeholder="Search for products ..." />
+                <button class="au-btn-submit" type="submit">
+                  Search
+                </button>
+              </form>
+              <div class="cart-area d-n">
+                <a href="#">
+                  <div class="total">19.22 <span> 2</span> </div> <i class="fa fa-shopping-cart"
+                    aria-hidden="true"></i>
+                </a>
+              </div>
             </div>
-            <div class="menu-sidebar-content js-scrollbar1">
-                <nav class="navbar-sidebar">
-                    <ul class="list-unstyled navbar-list">
-                        <li>
-                            <a href="">Add Product</a>
-                        </li>
-                        <li>
-                            <a href="">Edit Product</a>
-                        </li>
-                        <li>
-                            <a href="">Delete Product</a>
-                        </li>
-                        <li>
-                            <a href="">Get Product By Type</a>
-                        </li>
-                        <li>
-                            <a href="">Carts</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </aside>
-        <!-- END MENU SIDEBAR-->
-    ​
-        <div class="page-container">
-            <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
-                <div class="section-content section-content-p30">
-                    <div class="container-fluid">
-                        <div class="header-wrap">
-                            <form class="form-header" onsubmit="return false;" method="GET">
-                                <input class="au-input au-input-xl" type="text" name="search"
-                                    placeholder="Search for products ..." />
-                                <button class="au-btn-submit" type="submit">
-                                    Search
-                                </button>
-                            </form>
-                            <div class="cart-area d-n">
-                                <a href="#">
-                                    <div class="total">19.22 <span> 2</span> </div> <i class="fa fa-shopping-cart"
-                                        aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="account-wrap"></div>
-                    </div>
-                </div>
-            </header>
-    
+            <div class="account-wrap"></div>
+          </div>
+        </div>
+      </header>
+      <!-- END HEADER DESKTOP-->
+  
+

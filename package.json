@@ -18,10 +18,14 @@
   },
   "homepage": "https://github.com/nLeul/Online-Shopping-Project#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
+    "connect-flash": "^0.1.1",
     "ejs": "^3.0.1",
     "express": "^4.17.1",
-    "mongoose": "^5.9.4"
+    "express-session": "^1.17.0",
+    "express-validator": "^2.20.3",
+    "mongoose": "^5.9.4",
+    "nodemailer": "^6.4.5"
   }
 }
