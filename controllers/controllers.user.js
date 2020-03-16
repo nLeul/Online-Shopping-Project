@@ -44,8 +44,6 @@ exports.getConfirmationPage = (req,res,next)=>{
 exports.postConfirmation = (req,res,next)=>{
     User.findById(req.body.userid)
     .then(user=>{
-        console.log(req.body.confirm);
-        console.log(UserService.hashCode(user.email));
         if(req.body.confirm == UserService.hashCode(user.email)){
             req.flash('signup-success',"your signup is Succesfull !!, Login now.");
             res.redirect('/login');
@@ -61,5 +59,32 @@ exports.postConfirmation = (req,res,next)=>{
 }
 
 exports.getLoginPage = (req,res,next)=>{ 
-     res.render("user/login",{ title:"login", isAuthenticated: false, errConfirm: req.flash('signup-success'), existUserMsg: req.flash('exist-user') });
+     res.render("user/login",{ title:"login", chngErr: req.flash('changepw-error'), isAuthenticated: false, errConfirm: req.flash('signup-success'), existUserMsg: req.flash('exist-user') });
+}
+
+exports.getForgotPasswordPage = (req,res,next)=>{
+     res.render("user/forgot-pw", { title:"forgot"});
+}
+exports.postForgotPassword = (req,res,next)=>{
+    if(!UserService.changePasswordValidation(req)){
+        res.redirect('/login');
+    }else{
+     User.findOne({email: req.body.email})
+     .then(user=>{
+         if(user){
+          bcrypt.hash(req.body.password, 12)
+          .then(hashPw=>{
+               user.password = hashPw;
+               user.save().then(updateUser=>{
+                req.flash('signup-success',"password change is successfull! ")
+                res.redirect('/login');
+               });
+          })
+         }else{
+            req.flash('signup-success',"you are not our customer, or check your email ")
+            res.redirect('/login');
+         }
+     })
+     .catch(e=>console.log(e));
+    }
 }

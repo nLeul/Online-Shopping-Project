@@ -30,7 +30,8 @@ module.exports = class UserService{
             age: req.body.age,
             email: req.body.email,
             password: pw,
-            image: this.convertToBase64(req.body.image)
+            image: this.convertToBase64(req.body.image),
+            role: req.body.role
          });
     }
 
@@ -52,7 +53,7 @@ module.exports = class UserService{
             service: 'gmail',
             auth:{
                 user:'tesfayeabel85@gmail.com',
-                pass:'*******'
+                pass:'********'
             }
         });
         transporter.sendMail(mailOp,function(e,info){
@@ -64,7 +65,7 @@ module.exports = class UserService{
       });
     }
 
-    static hashCode(s) {
+    static hashCode(s) {      // hash code
         let hash = 0;
     for (let i = 0; i < s.length; i++) {
         let character = s.charCodeAt(i);
@@ -72,6 +73,19 @@ module.exports = class UserService{
         hash = hash & hash; // Convert to 32bit integer
     }
     return hash;
+    }
+
+    static changePasswordValidation(req){
+        req.check('email',"insert valid email address").isEmail();
+        req.check('password','Passwords do not match.').equals(req.body.confirmPW);
+        req.check('password', "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
+        let errors = req.validationErrors();
+        if(errors){
+            req.flash('changepw-error',errors);
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }

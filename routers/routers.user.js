@@ -11,4 +11,7 @@ routes.post('/confirm', userController.postConfirmation);
 
 routes.get('/login', userController.getLoginPage);
 
+routes.get('/forgot-password', userController.getForgotPasswordPage);
+routes.post('/forgot-password', userController.postForgotPassword);
+
 module.exports = routes;
