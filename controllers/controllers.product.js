@@ -26,7 +26,7 @@ exports.getHomePage = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
-            res.render('index', { productsList: prds, title: 'Products-List' });
+            res.render('index', { productsList: prds,temp:false,title: 'Products-List' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();

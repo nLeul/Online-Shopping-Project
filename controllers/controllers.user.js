@@ -73,11 +73,15 @@ exports.postLogin = (req,res,next)=>{
                         req.session.isAuthenticated = true;
                         req.session.user = user;
                         return req.session.save(err => {
+<<<<<<< HEAD
                             if(user.role == "admin"){
                                 res.redirect('/admin-prds');
                             }else{
                                 res.redirect('/customer-prds');
                             }                         
+=======
+                            res.redirect('/');
+>>>>>>> 14305c20107e4fa18451837585da7799be888aef
                         })
                     } else {
                         req.flash('signup-success', 'Invalid Username and Password!!');
@@ -136,3 +140,9 @@ exports.postForgotPassword = (req,res,next)=>{
 exports.successPage = (req,res,next)=>{
     res.send("success");
 }
+<<<<<<< HEAD
+=======
+exports.logout=(req,res,next)=>{
+    res.redirect('/login')    
+}
+>>>>>>> 14305c20107e4fa18451837585da7799be888aef

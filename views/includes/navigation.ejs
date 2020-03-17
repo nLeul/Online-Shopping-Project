@@ -10,7 +10,9 @@
       <div class="menu-sidebar-content js-scrollbar1">
         <nav class="navbar-sidebar">
           <ul class="list-unstyled navbar-list">
+            <%if(temp) {%> 
             <li>
+<<<<<<< HEAD:views/includes/navigation.ejs
               <a href="/findPrdByType">Get Product By Type</a>
             </li><%= isAuthenticated %>
             <% if(!isAuthenticated){%>
@@ -26,6 +28,20 @@
                 <a href="/login">Login</a>
               </li>
             <% } %>
+=======
+              <a href="/savePrd">Add Product</a>
+            </li>
+            <li>
+              <a href="/allCartPrd">Carts</a>
+            </li>
+          <%} %> 
+            <li>
+              <a href="/findPrdByType">Get Product By Type</a>
+            </li>
+           
+            <!-- login log out and sign up authenciation -->
+            
+>>>>>>> 14305c20107e4fa18451837585da7799be888aef:views/fragments/navigation.ejs
           </ul>
         </nav>
       </div>
