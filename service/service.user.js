@@ -43,7 +43,7 @@ module.exports = class UserService{
 
     static sendEmailToCustomer(customerEmail){     // email to customer 
         let mailOp = {
-            from: "tesfayeabel85@gmail.com",
+            from: "codewarriorstestemail@gmail.com",
             to: customerEmail,
             subject: "Confirmation Number",
             html: "<pre>  your confirmation number is =>    <b>"+this.hashCode(customerEmail) +"</b></pre>"
@@ -52,8 +52,8 @@ module.exports = class UserService{
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth:{
-                user:'tesfayeabel85@gmail.com',
-                pass:'tesfaye2'
+                user:'codewarriorstestemail@gmail.com',
+                pass:'msd12345'
             }
         });
         transporter.sendMail(mailOp,function(e,info){

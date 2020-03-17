@@ -1,4 +1,5 @@
 const Product = require('../models/models.product');
+const ProductService = require('../service/service.product');
 
 exports.getProdPage = (req, res, next) => {
     res.render('../views/product/add-products', { title: "Add-Products" });
@@ -10,10 +11,10 @@ exports.saveProduct = (req, res, next) => {
         name: req.body.name,
         category: req.body.category,
         price: req.body.price,
-        image: req.body.image,
+        image: ProductService.convertToBase64(req.body.image),
         description: req.body.description
     });
-    console.log(product);
+    //console.log(product);
     product.save()
         .then((result) => {
             res.redirect('/');
@@ -24,7 +25,8 @@ exports.saveProduct = (req, res, next) => {
 exports.getHomePage = (req, res, next) => {
     Product.find()
         .then(result => {
-            res.render('index', { productsList: result, title: 'Products-List' });
+            let prds = ProductService.converterToImage(result);
+            res.render('index', { productsList: prds, title: 'Products-List' });
         })
         .catch(err => console.log(err));
 
