@@ -15,21 +15,6 @@
                             <h1>Price: <%=products.price%> <span>&#36</span></h1>
                             <div class="price"> Catagory:<%=products.category%> </div>
                             <div class="price">Description:<%=products.description%></div>
-<<<<<<< HEAD
-=======
-                            <%if(temp){%>
-                            <form method="POST" action="/delete-product/">
-                                <input type="hidden" name="id" value="<%=products._id%>">
-                                <button class="btn btn-danger">Delete</button>
-                                <a href="/Edit-product/<%=products._id%>" class="btn btn-info"> Edit </a>
-                            </form>
-                            <form method="POST" action="/add-to-product">
-                                <input type="hidden" name="id" value="<%=products.id%>">
-                                <button class="btn btn-info">add to Cart </button>
-                               
-                            </form>
-                            <%}%>
->>>>>>> 14305c20107e4fa18451837585da7799be888aef
                             <a href="/details/<%=products._id%>" class="btn btn-warning">View Details </a>
                         </div>
                     </div>

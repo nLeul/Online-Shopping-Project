@@ -19,14 +19,9 @@ routes.post('/login', userController.postLogin);
 
 routes.get('/forgot-password',userController.getForgotPasswordPage);
 routes.post('/forgot-password', userController.postForgotPassword);
-<<<<<<< HEAD
 
 routes.get('/logout',userController.getLogout);      
 
 //routes.get('/success', userController.successPage);
-=======
-routes.get('/logout',userController.logout);
-routes.get('/success', userController.successPage);
->>>>>>> 14305c20107e4fa18451837585da7799be888aef
 
 module.exports = routes;   //abelnedi85@gmail.com
