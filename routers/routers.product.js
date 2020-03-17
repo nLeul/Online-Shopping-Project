@@ -1,18 +1,23 @@
 const router = require('express').Router();
 const productController = require('../controllers/controllers.product');
+const Authontication = require('../middleware/authentication');
+const Permit = require('../middleware/authorization');
 
-router.get("/savePrd", productController.getProdPage);
-router.post("/save-product", productController.saveProduct);
+//below all about admin
+router.get("/savePrd", Authontication, Permit('admin'), productController.getProdPage);
+router.post("/save-product", Authontication, Permit('admin'), productController.saveProduct);
 
-router.get('/', productController.getHomePage);
+router.get('/Edit-product/:prodId', Authontication, Permit('admin'), productController.getEditPage);
+router.post("/post-prod", Authontication, Permit('admin'), productController.postEditedProduct);
 
+router.post("/delete-product", Authontication, Permit('admin'), productController.deleteProduct);
 
-router.get('/Edit-product/:prodId', productController.getEditPage);
-router.post("/post-prod", productController.postEditedProduct);
+router.get('/admin-prds', Authontication, Permit('admin'), productController.getAdminPrds);
 
+//below all about customer
+router.get('/customer-prds', Authontication, Permit('customer'), productController.getCustomerPrds);
 
-router.post("/delete-product", productController.deleteProduct);
+//below, no need Authorization 
+router.get('/details/:prodId', Authontication, productController.getDetailsOfProduct);
 
-router.get('/details/:prodId', productController.getDetailsOfProduct)
-
-module.exports = router;
+module.exports = router;         

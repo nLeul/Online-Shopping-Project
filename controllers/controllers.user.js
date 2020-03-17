@@ -75,7 +75,15 @@ exports.postLogin = (req,res,next)=>{
                         req.session.user = user;
                         
                         return req.session.save(err => {
+<<<<<<< HEAD
+                            if(user.role == "admin"){
+                                res.redirect('/admin-prds');
+                            }else{
+                                res.redirect('/customer-prds');
+                            }                         
+=======
                             res.redirect('/');
+>>>>>>> 14305c20107e4fa18451837585da7799be888aef
                         })
                     } else {
                         req.flash('signup-success', 'Invalid Username and Password!!');
@@ -91,12 +99,18 @@ exports.postLogin = (req,res,next)=>{
     });
 }
 
-// exports.postLogout = (req,res,next)=>{
-//     req.session.destroy(err => {
-//         console.log(err);
-//         res.redirect('/login');
-//     });
-// }
+exports.getLogout = (req,res,next)=>{
+    //console.log(req.session.user);
+    req.session.destroy(err => {
+        if(err){
+            console.log(err);
+        }else{
+        // console.log(req.session.user);
+        req.session.isAuthenticated = false;
+         return res.redirect('/');
+        }
+    });
+}
 
 exports.getForgotPasswordPage = (req,res,next)=>{
      res.render("user/forgot-pw", { title:"forgot"});
@@ -128,6 +142,9 @@ exports.postForgotPassword = (req,res,next)=>{
 exports.successPage = (req,res,next)=>{
     res.send("success");
 }
+<<<<<<< HEAD
+=======
 exports.logout=(req,res,next)=>{
     res.redirect('/login')    
 }
+>>>>>>> 14305c20107e4fa18451837585da7799be888aef
