@@ -14,8 +14,7 @@ routes.post('/login', userController.postLogin);
 
 routes.get('/forgot-password', userController.getForgotPasswordPage);
 routes.post('/forgot-password', userController.postForgotPassword);
-// router.get('/logout',userController.logout);
-
+routes.get('/logout',userController.logout);
 routes.get('/success', userController.successPage);
 
 module.exports = routes;

@@ -73,7 +73,7 @@ exports.postLogin = (req,res,next)=>{
                         req.session.isAuthenticated = true;
                         req.session.user = user;
                         return req.session.save(err => {
-                            res.redirect('/success');
+                            res.redirect('/');
                         })
                     } else {
                         req.flash('signup-success', 'Invalid Username and Password!!');
@@ -119,6 +119,6 @@ exports.postForgotPassword = (req,res,next)=>{
 exports.successPage = (req,res,next)=>{
     res.send("success");
 }
-// exports.logout=(req,res,next)=>{
-
-// }
+exports.logout=(req,res,next)=>{
+    res.redirect('/login')    
+}
