@@ -3,7 +3,7 @@ const userController = require('../controllers/controllers.user');
 const productController = require('../controllers/controllers.product');
 
 const routes = express.Router();
-
+//no need Authentication (public functionality)
 routes.get('/', productController.getHomePage);
 
 routes.get("/sign-up",userController.getSignUpPage);
@@ -19,6 +19,8 @@ routes.get('/forgot-password',userController.getForgotPasswordPage);
 routes.post('/forgot-password', userController.postForgotPassword);
 
 routes.get('/logout',userController.getLogout);
-//routes.get('/success', userController.successPage);
+
+//below, no need Authorization 
+routes.get('/details/:prodId', productController.getDetailsOfProduct);
 
 module.exports = routes;   //abelnedi85@gmail.com
