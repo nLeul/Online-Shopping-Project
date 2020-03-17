@@ -6,4 +6,7 @@ router.post("/save-product", productController.saveProduct);
 
 router.get('/', productController.getHomePage);
 
+
+router.get('/Edit-product/:prodId', productController.getEditPage);
+
 module.exports = router;

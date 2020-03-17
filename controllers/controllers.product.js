@@ -24,7 +24,16 @@ exports.saveProduct = (req, res, next) => {
 exports.getHomePage = (req, res, next) => {
     Product.find()
         .then(result => {
-            res.render('index', { productsList: result , title:'Products-List'});
+            res.render('index', { productsList: result, title: 'Products-List' });
+        })
+        .catch(err => console.log(err));
+
+};
+exports.getEditPage = (req, res, next) => {
+    const productId = req.params.prodId;
+    Product.findById(productId)
+        .then(result => {
+            res.render("../views/product/edit-page", { product: result, title: 'Edit-Page' });
         })
         .catch(err => console.log(err));
 
