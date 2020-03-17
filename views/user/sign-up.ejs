@@ -20,49 +20,52 @@
        <!-- below is add form ====>  start -->
 
 <form action="/sign-up" method="POST">
-  <div class="form-row">
-
+  <!-- firstname -->
+  <div class="row">
     <div class="form-group col-md-6">
       <input type="text" name="firstname" class="form-control"  placeholder="First Name">
     </div>
-
-    <div class="form-group col-md-6">
+  </div>
+<!-- lastname -->
+  <div class="row">
+      <div class="form-group col-md-6">
         <input type="text" name="lastname" class="form-control"  placeholder="Last Name">
       </div>
-  
   </div>
-
-  <div class="form-group">
+<!-- age -->
+  <div class="row">
+    <div class="form-group col-md-6">
     <input type="text" name="age" class="form-control"  placeholder="Age">
+    </div>
   </div>
-
-  <div class="form-group">
+  <!-- email -->
+  <div class="row">
+    <div class="form-group col-md-6">
     <input type="text" name="email" class="form-control"  placeholder="Email">
   </div>
-
-  <div class="form-row">
-
+  </div>
+  <!-- password -->
+  <div class="row">
     <div class="form-group col-md-6">
       <input type="text" name="password" class="form-control"  placeholder="Password">
     </div>
-
-    <div class="form-group col-md-6">
-        <input type="text" name="confirmPassword" class="form-control"  placeholder="Confirm Password">
-      </div>
-  
   </div>
-
-  <div class="form-group">
-    <input type="text" name="image" class="form-control" id="inputAddress2" placeholder="Image Url">
-  </div>
-
-  <div class="form-group">
+  <!-- confirm password -->
+<div class="row">
+  <div class="form-group col-md-6">
+    <input type="text" name="confirmPassword" class="form-control"  placeholder="Confirm Password">
+ </div>
+</div>
+ <!-- role -->
+ <div class="row">
+  <div class="form-group col-md-6">
     <select name="role" class="form-control" >
         <option value="customer">Customer</option>
         <option value="admin">Admin</option>
       </select>
   </div>
-
+ </div>
+ <!-- signup btn -->
   <div class="form-row">
     <div class="form-group col-md-6">
       <button type="submit" class="btn btn-primary">Sign Up</button>

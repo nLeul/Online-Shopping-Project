@@ -29,7 +29,7 @@ exports.getHomePage = (req, res, next) => {
             res.render('index', { productsList: prds, title: 'Products-List' });
         })
         .catch(err => console.log(err));
-
+     ProductService.clearFolder();
 };
 
 
@@ -77,8 +77,10 @@ exports.getDetailsOfProduct = (req, res, next) => {
     const prodId = req.params.prodId;
     Product.findById(prodId)
         .then(result => {
-            res.render('../views/product/details', { products: result, title:"Product-details" });
+            let tempArr = []; tempArr.push(result);
+            tempArr = ProductService.converterToImage(tempArr);
+            res.render('../views/product/details', { products: tempArr[0], title:"Product-details" });
         })
         .catch(err => console.log(err));
-
+        ProductService.clearFolder();
 };

@@ -18,6 +18,7 @@ routes.post('/login', userController.postLogin);
 
 routes.get('/forgot-password',Authontication,Permit('customer'),userController.getForgotPasswordPage);
 routes.post('/forgot-password', userController.postForgotPassword);
+// router.get('/logout',userController.logout);
 
 routes.get('/success', userController.successPage);
 
