@@ -119,3 +119,6 @@ exports.postForgotPassword = (req,res,next)=>{
 exports.successPage = (req,res,next)=>{
     res.send("success");
 }
+// exports.logout=(req,res,next)=>{
+
+// }

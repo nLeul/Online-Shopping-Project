@@ -9,7 +9,6 @@ const userSchema = new Schema(
         age: Number,
         email: String,
         password: String,
-        image: String,
         role:String
     }
 );
