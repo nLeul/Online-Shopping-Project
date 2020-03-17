@@ -10,4 +10,9 @@ router.get('/', productController.getHomePage);
 router.get('/Edit-product/:prodId', productController.getEditPage);
 router.post("/post-prod", productController.postEditedProduct);
 
+
+router.post("/delete-product", productController.deleteProduct);
+
+router.get('/details/:prodId', productController.getDetailsOfProduct)
+
 module.exports = router;
