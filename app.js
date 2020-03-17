@@ -28,7 +28,7 @@ app.use(flash());
 //     next();
 // });
  app.use(userRoutes);
-// app.use(productRoutes);
+app.use(productRoutes);
 
 // app.get("/",(req,res)=>{
 //     res.send("done!! ");
