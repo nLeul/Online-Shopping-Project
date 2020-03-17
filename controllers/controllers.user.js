@@ -59,7 +59,7 @@ exports.postConfirmation = (req,res,next)=>{
 }
 
 exports.getLoginPage = (req,res,next)=>{ 
-     res.render("user/login",{ title:"login", chngErr: req.flash('changepw-error'), isAuthenticated: false, errConfirm: req.flash('signup-success'), existUserMsg: req.flash('exist-user') });
+     res.render("user/login",{ title:"login", chngErr: req.flash('changepw-error'), isAuthenticated: req.session.isAuthenticated, errConfirm: req.flash('signup-success'), existUserMsg: req.flash('exist-user') });
 }
 exports.postLogin = (req,res,next)=>{
     const email = req.body.email;
@@ -70,8 +70,10 @@ exports.postLogin = (req,res,next)=>{
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (isMatch) {
+                        
                         req.session.isAuthenticated = true;
                         req.session.user = user;
+                        
                         return req.session.save(err => {
                             if(user.role == "admin"){
                                 res.redirect('/admin-prds');
