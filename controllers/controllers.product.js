@@ -54,7 +54,29 @@ exports.postEditedProduct = (req, res, next) => {
 
         })
         .then((resul) => {
+            res.redirect('/details/'+req.body.id);
+        })
+        .catch(err => console.log(err));
+};
+
+
+exports.deleteProduct = (req, res, next) => {
+
+    Product.deleteOne({ _id: req.body.id })
+        .then(result => {
             res.redirect("/");
         })
         .catch(err => console.log(err));
+
+};
+
+exports.getDetailsOfProduct = (req, res, next) => {
+
+    const prodId = req.params.prodId;
+    Product.findById(prodId)
+        .then(result => {
+            res.render('../views/product/details', { products: result, title:"Product-details" });
+        })
+        .catch(err => console.log(err));
+
 };
