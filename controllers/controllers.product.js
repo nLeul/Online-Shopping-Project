@@ -16,7 +16,7 @@ exports.saveProduct = (req, res, next) => {
     console.log(product);
     product.save()
         .then((result) => {
-            res.redirect('/savePrd');
+            res.redirect('/');
         })
         .catch(err => console.log(err));
 };
@@ -29,3 +29,4 @@ exports.getHomePage = (req, res, next) => {
         .catch(err => console.log(err));
 
 };
+
