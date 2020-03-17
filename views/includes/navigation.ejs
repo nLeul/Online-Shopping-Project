@@ -11,20 +11,21 @@
         <nav class="navbar-sidebar">
           <ul class="list-unstyled navbar-list">
             <li>
-              <a href="/savePrd">Add Product</a>
-            </li>
-            <li>
-              <a href="#">Edit Product</a>
-            </li>
-            <li>
-              <a href="#">Delete Product</a>
-            </li>
-            <li>
               <a href="/findPrdByType">Get Product By Type</a>
-            </li>
-            <li>
-              <a href="/allCartPrd">Carts</a>
-            </li>
+            </li><%= isAuthenticated %>
+            <% if(!isAuthenticated){%>
+              <li>
+                <a href="/logout">Logout</a>
+              </li> 
+            <% }else{ %>  <%= isAuthenticated %>
+              <li>
+                <a href="/sign-up">Signup</a>
+              </li>
+  
+              <li>
+                <a href="/login">Login</a>
+              </li>
+            <% } %>
           </ul>
         </nav>
       </div>

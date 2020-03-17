@@ -32,6 +32,26 @@ exports.getHomePage = (req, res, next) => {
      ProductService.clearFolder();
 };
 
+exports.getAdminPrds = (req, res, next) => {
+    Product.find()
+        .then(result => {
+            let prds = ProductService.converterToImage(result);
+            res.render('product/admin-list-of-prds', { productsList: prds, title: 'admin-products' });
+        })
+        .catch(err => console.log(err));
+     ProductService.clearFolder();
+};
+
+exports.getCustomerPrds = (req, res, next) => {
+    Product.find()
+        .then(result => {
+            let prds = ProductService.converterToImage(result);
+            res.render('product/customer-list-of-prds', { productsList: prds, title: 'customer-products' });
+        })
+        .catch(err => console.log(err));
+     ProductService.clearFolder();
+};
+
 
 exports.getEditPage = (req, res, next) => {
     const productId = req.params.prodId;

@@ -1,8 +1,7 @@
-<%- include('./includes/head') %>
-
-
+<%- include('../includes/head.ejs') %>
 <body>
-    <%- include('./includes/navigation') %>
+
+    <%- include('../includes/navigation.ejs') %>
     <div class="main-content">
         <div class="section-content section-content-p30">
             <div class="container-fluid">
@@ -15,13 +14,16 @@
                             <h1>Price: <%=products.price%> <span>&#36</span></h1>
                             <div class="price"> Catagory:<%=products.category%> </div>
                             <div class="price">Description:<%=products.description%></div>
+                    
                             <a href="/details/<%=products._id%>" class="btn btn-warning">View Details </a>
+                            <form method="POST" action="/add-to-product">
+                                <input type="hidden" name="id" value="<%=products.id%>">
+                                <button class="btn btn-info">add to Cart </button>
+                            </form>
                         </div>
                     </div>
 
                     <% }%>
-
-
 
                 </div>
 
@@ -32,7 +34,7 @@
     </div>
 
 
-    <%- include('./includes/footer')%>
+    <%- include('../includes/footer')%>
 </body>
 
 </html>
