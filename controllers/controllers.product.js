@@ -29,6 +29,8 @@ exports.getHomePage = (req, res, next) => {
         .catch(err => console.log(err));
 
 };
+
+
 exports.getEditPage = (req, res, next) => {
     const productId = req.params.prodId;
     Product.findById(productId)
@@ -39,3 +41,20 @@ exports.getEditPage = (req, res, next) => {
 
 };
 
+
+exports.postEditedProduct = (req, res, next) => {
+    Product.findByIdAndUpdate(req.body.id)
+        .then(oldProduct => {
+            oldProduct.name = req.body.name;
+            oldProduct.category = req.body.category;
+            oldProduct.price = req.body.price;
+            oldProduct.image = req.body.image;
+            oldProduct.description = req.body.description;
+            return oldProduct.save()
+
+        })
+        .then((resul) => {
+            res.redirect("/");
+        })
+        .catch(err => console.log(err));
+};
