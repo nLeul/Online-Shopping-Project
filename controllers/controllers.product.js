@@ -5,6 +5,7 @@ exports.getProdPage = (req, res, next) => {
 
 };
 exports.saveProduct = (req, res, next) => {
+    
     const product = new Product({
         name: req.body.name,
         category: req.body.category,
@@ -12,6 +13,7 @@ exports.saveProduct = (req, res, next) => {
         image: req.body.image,
         description: req.body.description
     });
+    console.log(product);
     product.save()
         .then((result) => {
             res.redirect('/savePrd');
