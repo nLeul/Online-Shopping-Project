@@ -15,13 +15,15 @@ routes.post('/confirm', userController.postConfirmation);
 routes.get('/login', userController.getLoginPage);
 routes.post('/login', userController.postLogin);
 
-//routes.post('/loggout', userController.postLogout);
-
 routes.get('/forgot-password',userController.getForgotPasswordPage);
 routes.post('/forgot-password', userController.postForgotPassword);
+<<<<<<< HEAD
 
 routes.get('/logout',userController.getLogout);      
+=======
+>>>>>>> 00280aa35c4c5265b4501d31521f0cf8050d0bd2
 
+routes.get('/logout',userController.getLogout);
 //routes.get('/success', userController.successPage);
 
 module.exports = routes;   //abelnedi85@gmail.com
