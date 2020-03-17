@@ -10,21 +10,15 @@
       <div class="menu-sidebar-content js-scrollbar1">
         <nav class="navbar-sidebar">
           <ul class="list-unstyled navbar-list">
-<<<<<<< HEAD
-           
-=======
             
->>>>>>> 9d7809496e96553e1531fd615d37f7fe1ad323ff
             <li>
-<<<<<<< HEAD
-=======
               <a href="/findPrdByType">Get Product By Type</a>
             </li>
-            <% if(!isAuthenticated){%>
+            <% if(isAuthenticated){%>
               <li>
                 <a href="/logout">Logout</a>
               </li> 
-            <% }else{ %>  <%= isAuthenticated %>
+            <% }else{ %>  
               <li>
                 <a href="/sign-up">Signup</a>
               </li>
@@ -33,27 +27,9 @@
                 <a href="/login">Login</a>
               </li>
             <% } %>
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 00280aa35c4c5265b4501d31521f0cf8050d0bd2
-              <a href="/savePrd">Add Product</a>
-            </li>
-            <li>
-              <a href="/allCartPrd">Carts</a>
-            </li>
-          
-            <li>
-              <a href="/findPrdByType">Get Product By Type</a>
-            </li>
+            
            
             <!-- login log out and sign up authenciation -->
-            
-<<<<<<< HEAD
-=======
->>>>>>> 14305c20107e4fa18451837585da7799be888aef:views/fragments/navigation.ejs
->>>>>>> 9d7809496e96553e1531fd615d37f7fe1ad323ff
->>>>>>> 00280aa35c4c5265b4501d31521f0cf8050d0bd2
           </ul>
         </nav>
       </div>

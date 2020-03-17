@@ -39,7 +39,7 @@ exports.postSignUp = (req,res,next)=>{
 }
 
 exports.getConfirmationPage = (req,res,next)=>{
-      res.render('user/confirm-page', { title:"confirmation page", userid:req.params.userid});
+      res.render('user/confirm-page', { title:"confirmation page", userid:req.params.userid,isAuthenticated:false});
 }
 exports.postConfirmation = (req,res,next)=>{
     User.findById(req.body.userid)
@@ -59,7 +59,7 @@ exports.postConfirmation = (req,res,next)=>{
 }
 
 exports.getLoginPage = (req,res,next)=>{ 
-     res.render("user/login",{ title:"login", chngErr: req.flash('changepw-error'), isAuthenticated: req.session.isAuthenticated, errConfirm: req.flash('signup-success'), existUserMsg: req.flash('exist-user') });
+     res.render("user/login",{ title:"login", chngErr: req.flash('changepw-error'), isAuthenticated:false, errConfirm: req.flash('signup-success'), existUserMsg: req.flash('exist-user') });
 }
 exports.postLogin = (req,res,next)=>{
     const email = req.body.email;
@@ -80,10 +80,6 @@ exports.postLogin = (req,res,next)=>{
                             }else{
                                 res.redirect('/customer-prds');
                             }                         
-<<<<<<< HEAD
-=======
-
->>>>>>> 00280aa35c4c5265b4501d31521f0cf8050d0bd2
                         })
                     } else {
                         req.flash('signup-success', 'Invalid Username and Password!!');
@@ -101,6 +97,7 @@ exports.postLogin = (req,res,next)=>{
 
 exports.getLogout = (req,res,next)=>{
     //console.log(req.session.user);
+    // this is to destroy the session from our server
     req.session.destroy(err => {
         if(err){
             console.log(err);
@@ -113,7 +110,7 @@ exports.getLogout = (req,res,next)=>{
 }
 
 exports.getForgotPasswordPage = (req,res,next)=>{
-     res.render("user/forgot-pw", { title:"forgot"});
+     res.render("user/forgot-pw", { title:"forgot",isAuthenticated:false});
 }
 exports.postForgotPassword = (req,res,next)=>{
     if(!UserService.changePasswordValidation(req)){
@@ -139,9 +136,3 @@ exports.postForgotPassword = (req,res,next)=>{
     }
 }
 
-<<<<<<< HEAD
-exports.successPage = (req,res,next)=>{
-    res.send("success");
-}
-=======
->>>>>>> 00280aa35c4c5265b4501d31521f0cf8050d0bd2
