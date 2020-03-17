@@ -7,6 +7,7 @@
         <div class="section-content section-content-p30">
             <div class="container-fluid">
                 <div class="row">
+                    
                     <% for(let products of productsList){ %>
                     <div class="col-md-2">
                         <div class="product-box">
@@ -15,6 +16,7 @@
                             <h1>Price: <%=products.price%> <span>&#36</span></h1>
                             <div class="price"> Catagory:<%=products.category%> </div>
                             <div class="price">Description:<%=products.description%></div>
+                            <%if(temp){%>
                             <form method="POST" action="/delete-product/">
                                 <input type="hidden" name="id" value="<%=products._id%>">
                                 <button class="btn btn-danger">Delete</button>
@@ -23,8 +25,10 @@
                             <form method="POST" action="/add-to-product">
                                 <input type="hidden" name="id" value="<%=products.id%>">
                                 <button class="btn btn-info">add to Cart </button>
-                                <a href="/details/<%=products._id%>" class="btn btn-warning">View Details </a>
+                               
                             </form>
+                            <%}%>
+                            <a href="/details/<%=products._id%>" class="btn btn-warning">View Details </a>
                         </div>
                     </div>
 

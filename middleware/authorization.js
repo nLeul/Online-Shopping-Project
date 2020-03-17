@@ -3,7 +3,7 @@ function permit(...allowed) {
     function isAllowed(role){
         return allowed.indexOf(role) > -1;
     }
-     return (req, res, next) => { 
+return (req, res, next) => { 
          if (req.session.user && isAllowed(req.session.user.role)) {
               next(); 
             } else { 
@@ -12,4 +12,4 @@ function permit(...allowed) {
             } 
         }
 
-        module.exports = permit;
+ module.exports = permit;

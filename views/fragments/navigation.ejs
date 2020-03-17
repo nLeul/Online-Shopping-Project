@@ -10,24 +10,20 @@
       <div class="menu-sidebar-content js-scrollbar1">
         <nav class="navbar-sidebar">
           <ul class="list-unstyled navbar-list">
+            <%if(temp) {%> 
             <li>
               <a href="/savePrd">Add Product</a>
             </li>
             <li>
-              <a href="#">Edit Product</a>
+              <a href="/allCartPrd">Carts</a>
             </li>
-            <li>
-              <a href="#">Delete Product</a>
-            </li>
+          <%} %> 
             <li>
               <a href="/findPrdByType">Get Product By Type</a>
             </li>
-            <li>
-              <a href="/allCartPrd">Carts</a>
-            </li>
-            <li>
-              <a href="/logout">Logout</a>
-            </li>
+           
+            <!-- login log out and sign up authenciation -->
+            
           </ul>
         </nav>
       </div>
