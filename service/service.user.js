@@ -9,7 +9,7 @@ module.exports = class UserService{
 
         req.check('firstname',"must have first name").isLength({ min: 1 });
         req.check('lastname',"must have last name").isLength({ min: 1 });
-        req.check('age',"must have be number").isNumeric();
+        req.check('age',"age must be number").isNumeric();
         req.check('email',"insert valid email address").isEmail();
         req.check('password','Passwords do not match.').equals(req.body.confirmPassword);
         req.check('password', "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
@@ -53,7 +53,7 @@ module.exports = class UserService{
             service: 'gmail',
             auth:{
                 user:'tesfayeabel85@gmail.com',
-                pass:'********'
+                pass:'tesfaye2'
             }
         });
         transporter.sendMail(mailOp,function(e,info){

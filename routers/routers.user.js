@@ -1,5 +1,7 @@
 const express = require('express');
 const userController = require('../controllers/controllers.user');
+const Authontication = require('../middleware/authentication');
+const Permit = require('../middleware/authorization');
 
 const routes = express.Router();
 
@@ -12,9 +14,11 @@ routes.post('/confirm', userController.postConfirmation);
 routes.get('/login', userController.getLoginPage);
 routes.post('/login', userController.postLogin);
 
-routes.get('/forgot-password', userController.getForgotPasswordPage);
+//routes.post('/loggout', userController.postLogout);
+
+routes.get('/forgot-password',Authontication,Permit('customer'),userController.getForgotPasswordPage);
 routes.post('/forgot-password', userController.postForgotPassword);
 
 routes.get('/success', userController.successPage);
 
-module.exports = routes;
+module.exports = routes;   //abelnedi85@gmail.com
