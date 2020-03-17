@@ -8,5 +8,6 @@ router.get('/', productController.getHomePage);
 
 
 router.get('/Edit-product/:prodId', productController.getEditPage);
+router.post("/post-prod", productController.postEditedProduct);
 
 module.exports = router;
