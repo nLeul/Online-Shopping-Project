@@ -27,7 +27,11 @@ exports.getHomePage = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
+<<<<<<< HEAD
             res.render('index', { productsList: prds,isAuthenticated:false,title: 'Products-List' });
+=======
+            res.render('index', { productsList: prds,isAuthenticated: false,title: 'Products-List' });
+>>>>>>> 82494ef4cbf1a3341f23bff5be31b8178e330dca
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -37,7 +41,11 @@ exports.getAdminPrds = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
+<<<<<<< HEAD
             res.render('product/admin-list-of-prds', { productsList: prds, title: 'admin-products',isAuthenticated:true });
+=======
+            res.render('product/admin-list-of-prds', { productsList: prds,isAuthenticated: true, title: 'admin-products' });
+>>>>>>> 82494ef4cbf1a3341f23bff5be31b8178e330dca
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -47,7 +55,11 @@ exports.getCustomerPrds = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
+<<<<<<< HEAD
             res.render('product/customer-list-of-prds', { productsList: prds, title: 'customer-products',isAuthenticated:true });
+=======
+            res.render('product/customer-list-of-prds', { productsList: prds,isAuthenticated: true,title: 'customer-products' });
+>>>>>>> 82494ef4cbf1a3341f23bff5be31b8178e330dca
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();

@@ -17,7 +17,5 @@ router.get('/admin-prds', Authontication, Permit('admin'), productController.get
 //below all about customer
 router.get('/customer-prds', Authontication, Permit('customer'), productController.getCustomerPrds);
 
-//below, no need Authorization 
-router.get('/details/:prodId', Authontication, productController.getDetailsOfProduct);
 
 module.exports = router;         

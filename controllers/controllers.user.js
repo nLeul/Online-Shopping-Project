@@ -59,7 +59,11 @@ exports.postConfirmation = (req,res,next)=>{
 }
 
 exports.getLoginPage = (req,res,next)=>{ 
+<<<<<<< HEAD
      res.render("user/login",{ title:"login", chngErr: req.flash('changepw-error'), isAuthenticated:false, errConfirm: req.flash('signup-success'), existUserMsg: req.flash('exist-user') });
+=======
+     res.render("user/login",{ title:"login", chngErr: req.flash('changepw-error'), isAuthenticated: false, errConfirm: req.flash('signup-success'), existUserMsg: req.flash('exist-user') });
+>>>>>>> 82494ef4cbf1a3341f23bff5be31b8178e330dca
 }
 exports.postLogin = (req,res,next)=>{
     const email = req.body.email;
