@@ -12,7 +12,7 @@ module.exports = class UserService{
         req.check('age',"must have be number").isNumeric();
         req.check('email',"insert valid email address").isEmail();
         req.check('password','Passwords do not match.').equals(req.body.confirmPassword);
-        req.check('password', "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
+        req.check('password', "Password must include one lowercase character, one uppercase character, a number, a special character, and be 8 or more characters long.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
         let errors = req.validationErrors();
         if(errors){
             req.flash('signup-error',errors);
@@ -70,7 +70,7 @@ module.exports = class UserService{
     static changePasswordValidation(req){
         req.check('email',"insert valid email address").isEmail();
         req.check('password','Passwords do not match.').equals(req.body.confirmPW);
-        req.check('password', "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
+        req.check('password', "Password must include one lowercase character, one uppercase character, a number, a special character, and be 8 or more characters long.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
         let errors = req.validationErrors();
         if(errors){
             req.flash('changepw-error',errors);

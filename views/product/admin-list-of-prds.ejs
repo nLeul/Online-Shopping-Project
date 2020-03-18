@@ -1,4 +1,5 @@
 <%- include('../includes/head.ejs') %>
+
 <body>
 
     <%- include('../includes/navigation.ejs') %>
@@ -8,7 +9,7 @@
                 <a href="/savePrd" class="btn btn-warning">Add Product</a>
             </div>
             <br><br>
-            <div class="container-fluid">     
+            <div class="container-fluid">
                 <div class="row">
                     <% for(let products of productsList){ %>
                     <div class="col-md-2">
@@ -18,13 +19,15 @@
                             <h1>Price: <%=products.price%> <span>&#36</span></h1>
                             <div class="price">Category: <%=products.category%></div>
                             <div class="price">Description: <%=products.description%></div>
+                            <br>
                             <form method="POST" action="/delete-product/">
                                 <input type="hidden" name="id" value="<%=products._id%>">
                                 <button class="btn btn-danger">Delete</button>
-                                <a href="/Edit-product/<%=products._id%>"class="btn btn-info">Edit</a>
                             </form>
+                            <br>
+                            <a style="margin-right: 1em;" href="/Edit-product/<%=products._id%>" class="btn btn-info">Edit</a>
                             <a href="/details/<%=products._id%>" class="btn btn-warning">View Details</a>
-                          
+
                         </div>
                     </div>
 

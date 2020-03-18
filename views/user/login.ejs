@@ -27,16 +27,16 @@
     </div>
   </div>
   <% if (errConfirm) { %>
-    <h3><%= errConfirm %></h3>
+    <span class="alert alert-success" role="alert"><%= errConfirm %></span>
 <% } %>
 
 <% if (existUserMsg) { %>
-    <h3><%= existUserMsg %></h3>
+    <span class="alert alert-success" role="alert"><%= existUserMsg %></span>
 <% } %>
 
 <% if (chngErr) { %>
   <% for(let e of chngErr){ %>
-      <li><%= e.msg %></li>
+      <span class="alert alert-success" role="alert"><%= e.msg %></span>
 <% } %>
   <% } %>
 
