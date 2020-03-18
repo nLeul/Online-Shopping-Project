@@ -16,6 +16,7 @@ router.get('/admin-prds', Authontication, Permit('admin'), productController.get
 
 //below all about customer
 router.get('/customer-prds', Authontication, Permit('customer'), productController.getCustomerPrds);
-
+//////cart router
+router.post('/add-to-product',Authontication, Permit('customer'),productController.addToCart);
 
 module.exports = router;         

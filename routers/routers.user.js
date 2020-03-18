@@ -23,4 +23,6 @@ routes.get('/logout',userController.getLogout);
 //below, no need Authorization 
 routes.get('/details/:prodId', productController.getDetailsOfProduct);
 
+
+
 module.exports = routes;   //abelnedi85@gmail.com
