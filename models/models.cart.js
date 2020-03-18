@@ -4,14 +4,10 @@ const Schema = mongoose.Schema;
 
 const cartSchema = new Schema(
     {
-        email: String,
-        listOfProds:[]
+        userId : { type: Schema.Types.ObjectId, ref: 'User' }
 
     }
 );
-
-
-
 
 
 module.exports = mongoose.model('Cart', cartSchema);

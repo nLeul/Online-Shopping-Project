@@ -17,11 +17,8 @@ routes.post('/login', userController.postLogin);
 
 routes.get('/forgot-password',userController.getForgotPasswordPage);
 routes.post('/forgot-password', userController.postForgotPassword);
-<<<<<<< HEAD
 
 routes.get('/logout',userController.getLogout);      
-=======
->>>>>>> 00280aa35c4c5265b4501d31521f0cf8050d0bd2
 
 routes.get('/logout',userController.getLogout);
 

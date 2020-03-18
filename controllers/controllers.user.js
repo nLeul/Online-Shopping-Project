@@ -80,10 +80,6 @@ exports.postLogin = (req,res,next)=>{
                             }else{
                                 res.redirect('/customer-prds');
                             }                         
-<<<<<<< HEAD
-=======
-
->>>>>>> 00280aa35c4c5265b4501d31521f0cf8050d0bd2
                         })
                     } else {
                         req.flash('signup-success', 'Invalid Username and Password!!');
@@ -139,9 +135,6 @@ exports.postForgotPassword = (req,res,next)=>{
     }
 }
 
-<<<<<<< HEAD
 exports.successPage = (req,res,next)=>{
     res.send("success");
 }
-=======
->>>>>>> 00280aa35c4c5265b4501d31521f0cf8050d0bd2

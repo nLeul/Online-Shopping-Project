@@ -26,7 +26,7 @@ exports.getHomePage = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
-            res.render('index', { productsList: prds,isAuthenticated: false,title: 'Products-List' });
+            res.render('index', { productsList: prds,isAuthenticated: true,title: 'Products-List' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -36,7 +36,7 @@ exports.getAdminPrds = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
-            res.render('product/admin-list-of-prds', { productsList: prds,isAuthenticated: true, title: 'admin-products' });
+            res.render('product/admin-list-of-prds', { productsList: prds,isAuthenticated: false, title: 'admin-products' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -46,7 +46,7 @@ exports.getCustomerPrds = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
-            res.render('product/customer-list-of-prds', { productsList: prds,isAuthenticated: true,title: 'customer-products' });
+            res.render('product/customer-list-of-prds', { productsList: prds,isAuthenticated: false,title: 'customer-products' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
