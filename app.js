@@ -35,9 +35,9 @@ app.use(productRoutes);
 // });
 
 
-mongoose.connect('mongodb://localhost:27017/online-shopping-project', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect("monmongodb+srv://:mfitz@online-shopping-project-cw-ahpyr.gcp.mongodb.net/onlineshoppingproject", { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-        app.listen(8088, () => {
+        app.listen(process.env.PORT || 8088, () => {
             console.log('Running on 8088');
         });
     }).catch(err => console.error(err));
