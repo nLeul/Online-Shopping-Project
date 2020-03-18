@@ -37,7 +37,7 @@ app.use(productRoutes);
 
 mongoose.connect('mongodb://localhost:27017/online-shopping-project', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-        app.listen(8080, () => {
-            console.log('Running on 8080');
+        app.listen(4000, () => {
+            console.log('Running on 4000');
         });
     }).catch(err => console.error(err));
