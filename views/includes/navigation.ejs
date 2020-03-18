@@ -14,7 +14,7 @@
             <li>
               <a href="/findPrdByType">Get Product By Type</a>
             </li>
-            <% if(isAuthenticated){%>
+            <% if(!isAuthenticated){%>
               <li>
                 <a href="/logout">Logout</a>
               </li> 
@@ -40,16 +40,9 @@
         <div class="section-content section-content-p30">
           <div class="container-fluid">
             <div class="header-wrap">
-              <form class="form-header" onsubmit="return false;" method="GET">
-                <input class="au-input au-input-xl" type="text" name="search"
-                  placeholder="Search for products ..." />
-                <button class="au-btn-submit" type="submit">
-                  Search
-                </button>
-              </form>
               <div class="cart-area d-n">
                 <a href="#">
-                  <div class="total">19.22 <span> 2</span> </div> <i class="fa fa-shopping-cart"
+                  <div class="total">Shopping Cart<span>2</span> </div> <i class="fa fa-shopping-cart"
                     aria-hidden="true"></i>
                 </a>
               

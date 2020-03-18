@@ -11,7 +11,7 @@ const cartSchema = new Schema(
         listOfProds:{ 
             prdArr:[
                 {
-                   prdId:{ type:Schema.Types.ObjectId,ref:'Product'},
+                   prdId:{ type:Schema.Types.ObjectId , ref:'Product'},
                    quantity: Number
                 }
             ]
@@ -19,10 +19,9 @@ const cartSchema = new Schema(
     }
 );
 
-cartSchema.statics.addToCart = function(userId,prdId,qty){
-         console.log(userId+" "+prdId+" "+qty);
-
+// cartSchema.statics.addToCart = function(userId,prdId,qty){
+//          console.log(userId+" "+prdId+" "+qty);
          
-}
+// }
 
 module.exports = mongoose.model('Cart', cartSchema);

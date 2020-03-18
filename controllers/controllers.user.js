@@ -45,7 +45,8 @@ exports.postConfirmation = (req,res,next)=>{
     User.findById(req.body.userid)
     .then(user=>{
         if(req.body.confirm == UserService.hashCode(user.email)){
-            req.flash('signup-success',"your signup is Succesfull !!, Login now.");
+            
+            req.flash('signup-success',"Signup is Successful!! Login now.");
             res.redirect('/login');
         }else{
             req.flash('signup-success',"your confirmation is not correct, please re-signup. ");
@@ -123,7 +124,7 @@ exports.postForgotPassword = (req,res,next)=>{
           .then(hashPw=>{
                user.password = hashPw;
                user.save().then(updateUser=>{
-                req.flash('signup-success',"password change is successfull! ")
+                req.flash('signup-success',"Password change is successful. ")
                 res.redirect('/login');
                });
           })

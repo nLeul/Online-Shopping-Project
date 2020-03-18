@@ -29,7 +29,7 @@ exports.getHomePage = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
-            res.render('index', { productsList: prds,isAuthenticated: false,title: 'Products-List' });
+            res.render('index', { productsList: prds,isAuthenticated: true,title: 'Products-List' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -39,7 +39,7 @@ exports.getAdminPrds = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
-            res.render('product/admin-list-of-prds', { productsList: prds,isAuthenticated: true, title: 'admin-products' });
+            res.render('product/admin-list-of-prds', { productsList: prds,isAuthenticated: false, title: 'admin-products' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -49,7 +49,7 @@ exports.getCustomerPrds = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
-            res.render('product/customer-list-of-prds', { productsList: prds,isAuthenticated: true,title: 'customer-products' });
+            res.render('product/customer-list-of-prds', { productsList: prds,isAuthenticated: false,title: 'customer-products' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -109,5 +109,70 @@ exports.getDetailsOfProduct = (req, res, next) => {
 
 //add to cart  
 exports.addToCart=(req,res,next)=>{
-    Cart.addToCart(req.session.user._id,req.body.id,req.body.quantity);
+   // Cart.addToCart(req.session.user._id,req.body.id,req.body.quantity);
+Cart.findOne({userId : req.session.user._id})
+.then(carts=>{
+    if(carts){
+            for(let temp of carts.listOfProds.prdArr){
+                if(temp.prdId.toString() == req.body.id.toString()){
+                    temp.quantity=Number( temp.quantity)+Number(req.body.quantity);
+                  //  carts.listOfProds.prdArr.push(temp);
+                     carts.save();
+                     return res.redirect('/customer-prds');
+                }
+            }
+            carts.listOfProds.prdArr.push({prdId:req.body.id, quantity:req.body.quantity});
+             carts.save();
+             return res.redirect('/customer-prds');
+    }else{
+        let arr = []; arr.push({prdId:req.body.id, quantity:req.body.quantity});
+        const cart = new Cart({
+         userId:req.session.user._id,
+         listOfProds:{
+             prdArr:arr
+         }
+        });
+     
+        cart.save().then(r=>res.redirect('/customer-prds')).catch(e=>console.log(e));
+        
+    }
+})
+.catch(e=>console.log(e));
+
+}
+
+exports.listOfCart = (req,res,next)=>{
+    Cart.findOne({userId : req.session.user._id})
+    .then(cart=>{
+        let arr = [],qtyArr =[];
+        for(let pid of cart.listOfProds.prdArr){
+            arr.push(pid.prdId);
+            qtyArr.push(pid.quantity);
+        }
+        Product.find({_id : {$in: arr}})
+        .then(result => { 
+            let prds = ProductService.converterToImage(result);
+            let totalPrice=0,count=0;
+            for(let p of prds){
+                totalPrice+=(p.price*qtyArr[count])
+            }
+            res.render('product/cartsPage', { productsList: prds,totalPrice:totalPrice, qty:qtyArr ,isAuthenticated: false, title: 'carts' });
+        })
+        .catch(err => console.log(err));
+     ProductService.clearFolder();
+    })
+    .catch(e=>console.log(e));
+}
+
+exports.deleteFromCart = (req,res,next)=>{
+    Cart.findOne({userId : req.session.user._id})
+    .then(cart=>{
+        const cartProductIndex = cart.listOfProds.prdArr.findIndex(cp => {
+            return cp.prdId.toString() === req.params.pid.toString();
+        });
+        cart.listOfProds.prdArr.splice(cartProductIndex,1);
+        cart.save();
+        res.redirect('/list-of-cart')
+    })
+    .catch(e=>console.log(e));
 }

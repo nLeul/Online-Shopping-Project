@@ -16,7 +16,11 @@ router.get('/admin-prds', Authontication, Permit('admin'), productController.get
 
 //below all about customer
 router.get('/customer-prds', Authontication, Permit('customer'), productController.getCustomerPrds);
-//////cart router
+//////cart router    /list-of-cart
 router.post('/add-to-product',Authontication, Permit('customer'),productController.addToCart);
+
+router.get('/list-of-cart',Authontication, Permit('customer'),productController.listOfCart);
+
+router.get('/delete-cart/:pid',Authontication, Permit('customer'),productController.deleteFromCart);
 
 module.exports = router;         
