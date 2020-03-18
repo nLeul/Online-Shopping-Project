@@ -18,11 +18,11 @@ routes.post('/login', userController.postLogin);
 routes.get('/forgot-password',userController.getForgotPasswordPage);
 routes.post('/forgot-password', userController.postForgotPassword);
 
-routes.get('/logout',userController.getLogout);      
-
 routes.get('/logout',userController.getLogout);
 
 //below, no need Authorization 
 routes.get('/details/:prodId', productController.getDetailsOfProduct);
+
+
 
 module.exports = routes;   //abelnedi85@gmail.com

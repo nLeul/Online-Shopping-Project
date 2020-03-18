@@ -5,6 +5,7 @@
     <div class="main-content">
         <div class="section-content section-content-p30">
             <div class="container-fluid">
+                <a href="/list-of-cart" class="btn btn-info">All Carts</a>
                 <div class="row">
                     <% for(let products of productsList){ %>
                     <div class="col-md-2">
@@ -17,7 +18,15 @@
                     
                             <a href="/details/<%=products._id%>" class="btn btn-warning">View Details </a>
                             <form method="POST" action="/add-to-product">
-                                <input type="hidden" name="id" value="<%=products.id%>">
+                                <input type="hidden" name="id" value="<%=products.id%>"><br>
+                                <div>
+                                 <label >Quantity</label>
+                              <select id="" name="quantity">
+                                  <% for( let i=1;i<10;i++){ %> 
+                             <option value="<%=i%>"><%=i%> </option>
+                                  <% } %> 
+                                </select>
+                                </div><br>
                                 <button class="btn btn-info">add to Cart </button>
                             </form>
                         </div>
