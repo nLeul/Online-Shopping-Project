@@ -22,5 +22,7 @@ router.post('/add-to-product',Authontication, Permit('customer'),productControll
 router.get('/list-of-cart',Authontication, Permit('customer'),productController.listOfCart);
 
 router.get('/delete-cart/:pid',Authontication, Permit('customer'),productController.deleteFromCart);
+//about us
+router.get('/about-us',productController.aboutUs);
 
 module.exports = router;         

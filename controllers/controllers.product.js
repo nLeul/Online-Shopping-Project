@@ -63,7 +63,6 @@ exports.getEditPage = (req, res, next) => {
             res.render("../views/product/edit-page", { product: result, title: 'Edit-Page',isAuthenticated:true });
         })
         .catch(err => console.log(err));
-
 };
 
 
@@ -90,7 +89,6 @@ exports.deleteProduct = (req, res, next) => {
              res.redirect("/admin-prds");
         })
         .catch(err => console.log(err));
-
 };
 
 exports.getDetailsOfProduct = (req, res, next) => {
@@ -175,4 +173,8 @@ exports.deleteFromCart = (req,res,next)=>{
         res.redirect('/list-of-cart')
     })
     .catch(e=>console.log(e));
+}
+/////
+exports.aboutUs=(req,res,next)=>{
+    res.render('about-us',{isAuthenticated:true,title:"About us"})
 }

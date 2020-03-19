@@ -1,0 +1,17 @@
+.page-footer font-small blue{
+    position: fixed;
+    bottom: 2;
+    width:100%;
+    margin-left: 4em;
+}
+
+.nav-link dropdown-toggle:hover{
+    display: inline;
+}
+
+.universityimages{
+  content: "";
+  clear: both;
+  display: table;
+   display: flex;
+}

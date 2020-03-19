@@ -18,7 +18,7 @@ exports.postSignUp = (req,res,next)=>{
        User.findOne({email : req.body.email})
        .then(user=>{
            if(user){
-               req.flash("exist-user","you are  our customer, if U forget password please click forget button");
+               req.flash("exist-user","Password or user name dont match.Hit forgot password if you forgot your password");
                res.redirect('/login');
            }else{
           

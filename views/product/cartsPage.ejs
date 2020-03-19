@@ -2,38 +2,27 @@
 <body>
 
     <%- include('../includes/navigation.ejs') %>
-    <div class="main-content">
-        <div class="section-content section-content-p30">
-            <div class="row">
-            </div>
-            <div class="container-fluid">       
-                <div class="price">Total Price is = <%=totalPrice%></div>
-                <a href="/customer-prds" class="btn btn-info">Products </a>  
+            <a style="margin-left:110em;" href="/customer-prds" class="btn btn-secondary">Previous page</a>
+            <div class="container">   
+                 
                 <div class="row">
                     <% let count=0; for(let products of productsList){ %>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <div class="product-box">
-                            <img src="<%=products.image%>" class="img-responsive" alt="image not found">
-                            <h1>Name: <%=products.name%></h1>
-                            <h1>Price: <span>&#36</span> <%=products.price%> </h1>
-                            <div class="price"> Catagory : <%=products.category%> </div>
-                            <div class="price">Quantity : <%=qty[count++]%></div>
-                            <a href="/delete-cart/<%=products._id%>" class="btn btn-danger">remove </a>
-                          
+                            <div class="panel-body"><img src="<%=products.image%>" class="img-responsive" style="width:100%" ></div>
+                            <h1 style="font-size: medium;">Name: <%=products.name%></h1>
+                            <h1 style="font-size: medium;">Price: <span>&#36</span> <%=products.price%> </h1>
+                            <div style="font-size: medium;" class="price"> Catagory : <%=products.category%> </div>
+                            <div style="font-size: medium;" class="price">Quantity : <%=qty[count++]%></div>
+                            <a href="/delete-cart/<%=products._id%>" class="btn btn-secondary">remove </a>
                         </div>
                     </div>
 
                     <% }%>
-
                 </div>
-
+                 <div style="margin-left:80em;" class="btn btn-secondary btn-lg">SubTotal</div>
+                 <h1 style="margin-left:41em;"><%=totalPrice%>$</h1>
             </div>
-
-        </div>
-
-    </div>
-
-
     <%- include('../includes/footer')%>
 </body>
 
