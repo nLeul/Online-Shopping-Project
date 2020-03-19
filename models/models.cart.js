@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-
 const cartSchema = new Schema(
     {
         userId:{
@@ -18,10 +17,5 @@ const cartSchema = new Schema(
         }
     }
 );
-
-// cartSchema.statics.addToCart = function(userId,prdId,qty){
-//          console.log(userId+" "+prdId+" "+qty);
-         
-// }
 
 module.exports = mongoose.model('Cart', cartSchema);

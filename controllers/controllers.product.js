@@ -1,6 +1,7 @@
 const Product = require('../models/models.product');
 const ProductService = require('../service/service.product');
 const Cart=require('../models/models.cart');
+const Order = require('../models/model.order');
 
 
 //
@@ -143,7 +144,10 @@ Cart.findOne({userId : req.session.user._id})
 
 exports.listOfCart = (req,res,next)=>{
     Cart.findOne({userId : req.session.user._id})
-    .then(cart=>{
+    .then(cart=>{console.log(cart);
+        if(!cart){
+           return res.redirect('/customer-prds');
+        }
         let arr = [],qtyArr =[];
         for(let pid of cart.listOfProds.prdArr){
             arr.push(pid.prdId);
@@ -156,7 +160,8 @@ exports.listOfCart = (req,res,next)=>{
             for(let p of prds){
                 totalPrice+=(p.price*qtyArr[count])
             }
-            res.render('product/cartsPage', { productsList: prds,totalPrice:totalPrice, qty:qtyArr ,isAuthenticated: false, title: 'carts' });
+        
+            res.render('product/cartsPage', { cartId:cart._id, productsList: prds,totalPrice:totalPrice, qty:qtyArr ,isAuthenticated: false, title: 'carts' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -176,3 +181,105 @@ exports.deleteFromCart = (req,res,next)=>{
     })
     .catch(e=>console.log(e));
 }
+
+exports.payment = (req,res,next)=>{
+    // console.log(req.params.tprice +"   "+req.params.cid);
+     res.render('product/thanks', { totalprice:req.params.tprice,cartId:req.params.cid ,isAuthenticated: false, title: 'Thanks' })
+}
+
+exports.checkOut = (req,res,next)=>{
+      Order.findOne({ userId : req.session.user._id })
+      .then(order =>{ 
+          if(order){
+            allPidPriceMethod(req.session.user._id, req.params.cid, 0);
+            //res.render('product/thanks', { isAuthenticated: false, title: 'Thanks' })
+            res.redirect('/customer-prds');
+          }else{
+            allPidPriceMethod(req.session.user._id, req.params.cid, 1);
+            //res.render('product/thanks', { isAuthenticated: false, title: 'Thanks' })
+            res.redirect('/customer-prds');
+          }
+      })
+      .catch(e=>console.log(e));
+}
+
+exports.orderHistory = (req,res,next)=>{
+    Order.findOne({ userId : req.session.user._id })
+    .then(order=>{
+        let prdIds = [], priceQtyDate = [];
+        for(let daily of order.allHistory.dailyHistory ){
+            let prdWithPrice = daily.prdIdWithPrice;
+            for(let pid of prdWithPrice){
+                prdIds.push(pid.prdId );
+                priceQtyDate.push({ pid:pid.prdId, oldPrice :pid.oldPrice, quantity:pid.quantity,date:daily.date });
+            }
+
+        }
+        //console.log(prdIds);
+        //console.log(priceQtyDate);
+        Product.find({_id : {$in: prdIds}})
+        .then(result => { 
+            let prds = ProductService.converterToImage(result);
+        let display = [], count=0;
+        for(let p of priceQtyDate){
+
+           for(let pobj of prds){
+               if(pobj._id ==  p.pid.toString()){
+display.push({ name:pobj.name , newPrice:pobj.price, image:pobj.image, oldPrice:p.oldPrice, quantity:p.quantity, date:p.date });       
+                                   
+               }
+           }
+        }
+         console.log(display);
+        res.render('product/history', { historyArr: display ,isAuthenticated: false, title: 'history' });
+        });
+    })
+    .catch(e=>console.log(e));
+}
+
+
+
+
+
+function allPidPriceMethod(uid,cartId,separator){
+     Cart.findOne({ _id : cartId})
+     .then(cart=>{
+         let arrPid = [];
+        for(let pid of cart.listOfProds.prdArr){
+            arrPid.push(pid.prdId);
+        }
+        // console.log(cart.listOfProds.prdArr);
+       Product.find({_id : {$in: arrPid}})
+       .then(prd=>{
+        let prdIdWithPriceArr = [], c=0;
+        for(let pid of prd){
+            prdIdWithPriceArr.push({ prdId : pid._id, oldPrice : pid.price, quantity : cart.listOfProds.prdArr[c++].quantity });
+        }
+        //console.log(prdIdWithPriceArr);
+        let dailyHistoryArr = [];
+        dailyHistoryArr.push({ prdIdWithPrice : prdIdWithPriceArr, date: new Date()});
+
+         if(separator == 1){
+            const order = new Order({
+                userId :uid,
+                allHistory : {
+                    dailyHistory : dailyHistoryArr
+                }
+            });
+           // console.log(dailyHistoryArr);
+           order.save();
+         }else{
+            Order.findOne({ userId : uid })
+            .then(ord=>{
+               // console.log(ord.allHistory.dailyHistory);
+               let newDailyHistory = ord.allHistory.dailyHistory.concat(dailyHistoryArr);
+               ord.allHistory.dailyHistory = newDailyHistory;
+               ord.save();
+            });
+         }
+      
+       });
+     })
+     .catch(e=>console.log(e));
+     Cart.deleteOne({_id : cartId}).then(a=>{});
+} 
