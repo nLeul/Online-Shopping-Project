@@ -129,11 +129,10 @@ exports.postForgotPassword = (req,res,next)=>{
                });
           })
          }else{
-            req.flash('signup-success',"you are not our customer, or check your email ")
-       /      res.redirect('/login');
+            req.flash('signup-success',"you are not our customer, or check your email")
+           res.redirect('/login');
          }
      })
      .catch(e=>console.log(e));
     }
 }
-
