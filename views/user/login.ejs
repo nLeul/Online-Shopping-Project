@@ -3,6 +3,8 @@
     
     <%- include('../includes/navigation.ejs') %>
     <link rel="stylesheet" href="/css/login.css" />
+
+
 <div class="wrapper fadeInDown">
     <div id="formContent">
       <!-- Tabs Titles -->
@@ -19,25 +21,25 @@
         <input type="submit" class="fadeIn fourth" value="Log In">
       </form>
       <!-- Remind Passowrd -->
+       <% if (errConfirm) { %>
+    <h6 style="color:red;"><%= errConfirm %></h6>
+<% } %>
+
+<% if (existUserMsg) { %>
+    <h6 style="color: red;"><%= existUserMsg %></h6>
+<% } %>
+
+<% if (chngErr) { %>
+  <% for(let e of chngErr){ %>
+      <h6 style="color: red;"><%= e.msg %></h6>
+<% } %>
+  <% } %>
       <div id="formFooter">
         <a class="underlineHover" href="/forgot-password">Forgot Password?</a><br>
         <a class="underlineHover" href='/sign-up'>Sign up</a>
       </div>
   
     </div>
-  </div>
-  <% if (errConfirm) { %>
-    <span class="alert alert-success" role="alert"><%= errConfirm %></span>
-<% } %>
-
-<% if (existUserMsg) { %>
-    <span class="alert alert-success" role="alert"><%= existUserMsg %></span>
-<% } %>
-
-<% if (chngErr) { %>
-  <% for(let e of chngErr){ %>
-      <span class="alert alert-success" role="alert"><%= e.msg %></span>
-<% } %>
-  <% } %>
+</div>
 
   <%- include('../includes/footer.ejs') %>  

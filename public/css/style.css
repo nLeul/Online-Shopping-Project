@@ -1,0 +1,35 @@
+.page-footer font-small blue{
+    position: fixed;
+    bottom: 2;
+    width:100%;
+    margin-left: 4em;
+}
+
+.nav-link dropdown-toggle:hover{
+    display: inline;
+}
+
+.universityimages{
+  content: "";
+  clear: both;
+  display: table;
+   display: flex;
+}
+
+        .flex-container{
+    width: 60%;
+    min-height: 80px;
+    margin: 0 auto;
+    display: -webkit-flex; /* Safari */     
+    display: flex; /* Standard syntax */
+}
+.flex-container .column{
+    padding: 10px;
+    background: #dbdfe5;
+    -webkit-flex: 1; /* Safari */
+    -ms-flex: 1; /* IE 10 */
+    flex: 1; /* Standard syntax */
+}
+.flex-container .column.bg-alt{
+    background: #b4bac0;
+}

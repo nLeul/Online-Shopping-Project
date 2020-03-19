@@ -4,49 +4,53 @@
 
     <%- include('../includes/navigation.ejs') %>
 
-  <div class="main-content">
-    <div class="section-content section-content-p30">
-      <div class="container-fluid">
-        <div class="row">
+ 
 
           <!-- below is add form ====>  start -->
-
-          <form action="/save-product" method="POST">
-            <div class="form-row">
+          <div class="container">
+            <form action="/save-product" method="POST">
+           <!-- id -->
                 <input type="hidden" name="_id" class="form-control" id="inputEmail4" placeholder="Product Id">
-              </div>
-                <label for="inputPassword4">Product Name</label>
-                <input type="text" name="name" class="form-control" id="inputPassword4" placeholder="Product Name">
-              </div>
+            <!-- pdt name -->
+            <div class="row">
+              <div class="form-group col-md-6">
+              <label for="inputPassword4">Product Name</label>
+              <input type="text" name="name" class="form-control" id="inputPassword4" placeholder="Product Name">
+             </div>
             </div>
-            <div class="form-group">
+            <!-- pdt price -->
+             <div class="row">
+              <div class="form-group col-md-6">
               <label for="inputAddress">Product Price</label>
               <input type="text" name="price" class="form-control" id="inputAddress" placeholder="Product Price">
             </div>
-            <div class="form-group">
+            </div>
+            <!-- pdt image -->
+            <div class="row">
+              <div class="form-group col-md-6">
               <label for="inputAddress2">Image</label>
               <input type="text" name="image" class="form-control" id="inputAddress2" placeholder="Image Url">
             </div>
-            <div class="form-row">
-              <div class="form-group">
+            </div>
+            <!-- pdt category -->
+            <div class="row">
+              <div class="form-group col-md-6">
                 <label for="inputCity">Product Category</label>
                 <input type="text" name="category" class="form-control" id="inputCity" placeholder="Product Category">
-              </div><br>
-              <div class="form-group purple-border">
+              </div>
+           </div>
+           <!-- description -->
+           <div class="row">
+              <div class="form-group col-md-6">
                 <label for="exampleFormControlTextarea4">Description</label>
                 <textarea placeholder="Enter product description here" name="description" class="form-control" id="exampleFormControlTextarea4" rows="3"></textarea>
               </div>
-            </div> <br>
+           </div>
+           <!-- button -->
             <button type="submit" class="btn btn-primary">Add Product</button>
           </form>
+          </div>
 
+          
 
-          <!-- below is add form ====>  end -->
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
  

@@ -2,41 +2,31 @@
 <body>
 
     <%- include('../includes/navigation.ejs') %>
-    <div class="main-content">
-        <div class="section-content section-content-p30">
-            <div class="row">
-            </div>
-            <div class="container-fluid">       
-                <div class="price">Total Price is = <%=totalPrice%></div>
-                <a href="/customer-prds" class="btn btn-info">Products </a>
+    
+               
                 <!-- <a href="/check-out/<%=cartId%>" class="btn btn-primary">Check-Out </a>   -->
-                <a href="/payment/<%=totalPrice%>/<%=cartId%>" class="btn btn-primary">Check-Out </a>
+               
+            <div class="container">   
+            <a href="/payment/<%=totalPrice%>/<%=cartId%>" class="btn btn-primary">Check-Out </a>
+            <a style="margin-left:110em;" href="/customer-prds" class="btn btn-secondary">Previous page</a>
                 <div class="row">
                     <% let count=0; for(let products of productsList){ %>
-                    <div class="col-md-2">
-                        <div class="product-box">
-                            <img src="<%=products.image%>" class="img-responsive" alt="image not found">
-                            <h1>Name: <%=products.name%></h1>
-                            <h1>Price: <span>&#36</span> <%=products.price%> </h1>
-                            <div class="price"> Catagory : <%=products.category%> </div>
-                            <div class="price">Quantity : <%=qty[count++]%></div>
-                            <a href="/delete-cart/<%=products._id%>" class="btn btn-danger">remove </a>
-                          
+                <div class="col-md-3">
+                        <div class="panel panel-info">
+                            <div class="flex-container">
+
+                            <div class="panel-body"><img src="<%=products.image%>" class="img-responsive" width="130px" height="130px" alt="Image"></div>
+                            </div> <div class="panel-body">
+                            <h1 style="font-size: medium;"> <%=products.name%></h1>
+                            <h1 style="font-size: medium;">Price: <span>&#36</span> <%=products.price%> </h1>
+                            <div style="font-size: medium;" class="price">Quantity : <%=qty[count++]%></div>
+                            <a href="/delete-cart/<%=products._id%>" class="btn btn-secondary">remove </a>
                         </div>
                     </div>
-
+                    </div>
                     <% }%>
-
                 </div>
-
+                 <div style="margin-left:89em;" class="btn btn-secondary btn-lg">SubTotal</div>
+                 <h1 style="margin-left:45em;"><%=totalPrice%>$</h1>
             </div>
-
-        </div>
-
-    </div>
-
-
     <%- include('../includes/footer')%>
-</body>
-
-</html>

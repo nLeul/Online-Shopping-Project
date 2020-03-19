@@ -2,11 +2,7 @@
 <body>
 
     <%- include('../includes/navigation.ejs') %>
-
-<div class="main-content">
-    <div class="section-content section-content-p30">
-         <div class="container-fluid">
-              <div class="row">
+             
 
                 <% if (errMsg) { %>
                     <% for(let e of errMsg){ %>
@@ -15,11 +11,13 @@
                     <% } %>
            
                     <% if (errConfirm) { %>
-                         <h3><%= errConfirm %></h3>
+                         <h5><%= errConfirm %></h5>
                     <% } %>
-       <!-- below is add form ====>  start -->
-
-<form action="/sign-up" method="POST">
+          
+<!-- form begins here -->
+<div class="container" style="margin-top:3em ;">
+  <h1>Sign up page</h1>
+  <form action="/sign-up" method="POST">
   <!-- firstname -->
   <div class="row">
     <div class="form-group col-md-6">
@@ -73,15 +71,10 @@
   </div> 
  
 </form>
+</div>
+
+<!-- form ends here -->
 
 
 <!-- below is add form ====>  end    -->
-            </div>
-
-        </div>
-
-   </div>
-
-</div>
-
 <%- include('../includes/footer.ejs') %>

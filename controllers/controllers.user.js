@@ -10,7 +10,7 @@ exports.getSignUpPage = (req,res,next)=>{
     }else{
         msgs=null;
     } 
-      res.render("user/sign-up",{ title:"sign up", errMsg: msgs, isAuthenticated: false, errConfirm: req.flash('signup-success')});
+      res.render("user/sign-up",{ title:"sign up",fname:"", errMsg: msgs, isAuthenticated: false, errConfirm: req.flash('signup-success')});
 }
 
 exports.postSignUp = (req,res,next)=>{
@@ -18,7 +18,7 @@ exports.postSignUp = (req,res,next)=>{
        User.findOne({email : req.body.email})
        .then(user=>{
            if(user){
-               req.flash("exist-user","you are  our customer, if U forget password please click forget button");
+               req.flash("exist-user","Password or user name dont match.Hit forgot password if you forgot your password");
                res.redirect('/login');
            }else{
           
@@ -39,7 +39,7 @@ exports.postSignUp = (req,res,next)=>{
 }
 
 exports.getConfirmationPage = (req,res,next)=>{
-      res.render('user/confirm-page', { title:"confirmation page", userid:req.params.userid,isAuthenticated:false});
+      res.render('user/confirm-page', { title:"confirmation page",fname:"", userid:req.params.userid,isAuthenticated:false});
 }
 exports.postConfirmation = (req,res,next)=>{
     User.findById(req.body.userid)
@@ -60,7 +60,7 @@ exports.postConfirmation = (req,res,next)=>{
 }
 
 exports.getLoginPage = (req,res,next)=>{ 
-     res.render("user/login",{ title:"login", chngErr: req.flash('changepw-error'), isAuthenticated:false, errConfirm: req.flash('signup-success'), existUserMsg: req.flash('exist-user') });
+     res.render("user/login",{ title:"login",fname:"", chngErr: req.flash('changepw-error'), isAuthenticated:false, errConfirm: req.flash('signup-success'), existUserMsg: req.flash('exist-user') });
 }
 exports.postLogin = (req,res,next)=>{
     const email = req.body.email;
@@ -111,7 +111,7 @@ exports.getLogout = (req,res,next)=>{
 }
 
 exports.getForgotPasswordPage = (req,res,next)=>{
-     res.render("user/forgot-pw", { title:"forgot",isAuthenticated:false});
+     res.render("user/forgot-pw", { title:"forgot",fname:"",isAuthenticated:false});
 }
 exports.postForgotPassword = (req,res,next)=>{
     if(!UserService.changePasswordValidation(req)){

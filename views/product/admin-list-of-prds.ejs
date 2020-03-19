@@ -6,20 +6,20 @@
     <div class="main-content">
         <div class="section-content section-content-p30">
             <div class="row">
-                <a href="/savePrd" class="btn btn-warning">Add Product</a>
+                <a  style="margin-left:3em;" href="/savePrd" class="btn btn-warning">Add Product</a>
             </div>
             <br><br>
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
                     <% for(let products of productsList){ %>
-                    <div class="col-md-2">
-                        <div class="product-box">
-                            <img src="<%=products.image%>" class="img-responsive" alt="image not found">
-                            <h1>Name: <%=products.name%></h1>
-                            <h1>Price: <%=products.price%> <span>&#36</span></h1>
-                            <div class="price">Category: <%=products.category%></div>
-                            <div class="price">Description: <%=products.description%></div>
-                            <br>
+                   <div class="col-md-3">
+                        <div class="panel panel-info">
+                             <div class="flex-container">
+                           <div class="panel-body"> <img src="<%=products.image%>" class="img-responsive" width="130px" height="130px"  alt="image not found"></div>
+                           <div class="panel-body">
+                           <h1 style="font-size: medium;opacity: initial;">Name: <%=products.name%></h1>
+                            <h1 style="font-size:medium;">Price: <%=products.price%> <span>&#36</span></h1>
+                            
                             <form method="POST" action="/delete-product/">
                                 <input type="hidden" name="id" value="<%=products._id%>">
                                 <button class="btn btn-danger">Delete</button>
@@ -29,8 +29,9 @@
                             <a href="/details/<%=products._id%>" class="btn btn-warning">View Details</a>
 
                         </div>
+                        </div>
                     </div>
-
+                </div>
                     <% }%>
 
                 </div>
@@ -43,6 +44,3 @@
 
 
     <%- include('../includes/footer')%>
-</body>
-
-</html>

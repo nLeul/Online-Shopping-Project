@@ -1,5 +1,6 @@
 <%- include('../includes/head.ejs') %>
 <body>
+    
 
     <%- include('../includes/navigation.ejs') %>
     <div class="main-content">
@@ -11,11 +12,11 @@
                     <div class="col-md-2">
                         <div class="product-box">
                             <img src="<%=products.image%>" class="img-responsive" alt="image not found">
-                            <h1>Name: <%=products.name%></h1>
-                            <h1>Current Price: <span>&#36</span> <%=products.newPrice%> </h1>
-                            <h1>Old Price: <span>&#36</span> <%=products.oldPrice%> </h1>
-                            <div class="price"> Quantity : <%=products.quantity%> </div>
-                            <div class="price">Date :<%=products.date%></div>
+                            <h5  style="background-color:#48D1CC;">Type:<%=products.name%></h3>
+                            <h5 style="color:#FF7F50;">Current Price: <span>&#36</span> <%=products.newPrice%> </h5>
+                            <h5 style="color:crimson ;">Old Price: <span>&#36</span> <%=products.oldPrice%> </h5>
+                            <h5 style="color:#6495ED;" > Quantity : <%=products.quantity%> </h5>
+                            <h5 style="color:#663399;" >Date :<%=products.date%></h5>
         
                         </div>
                     </div>

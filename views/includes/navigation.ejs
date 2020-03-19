@@ -1,57 +1,60 @@
-<div class="page-wrapper">
 
-    <!-- MENU SIDEBAR-->
-    <aside class="menu-sidebar d-none d-lg-block" style="background-color: rgb(212, 212, 212);">
-      <div class="logo">
-         <a href="#">
-          <img src="/logo/logo.png" alt="martLogo" >
-        </a> 
-      </div>
-      <div class="menu-sidebar-content js-scrollbar1">
-        <nav class="navbar-sidebar">
-          <ul class="list-unstyled navbar-list">
-            
-            <li>
-              <a href="/findPrdByType">Get Product By Type</a>
-            </li>
-            <% if(!isAuthenticated){%>
-              <li>
-                <a href="/logout">Logout</a>
-              </li> 
-            <% }else{ %>  
-              <li>
-                <a href="/sign-up">Signup</a>
-              </li>
-  
-              <li>
-                <a href="/login">Login</a>
-              </li>
-            <% } %>
-            <!-- login log out and sign up authenciation -->
-          </ul>
-        </nav>
-      </div>
-    </aside>
-    <!-- END MENU SIDEBAR-->
-  
-    <div class="page-container">
-      <!-- HEADER DESKTOP-->
-      <header class="header-desktop">
-        <div class="section-content section-content-p30">
-          <div class="container-fluid">
-            <div class="header-wrap">
-              <div class="cart-area d-n">
-                <a href="/list-of-cart">
-                  <div class="total">Shopping Cart<span>2</span> </div> <i class="fa fa-shopping-cart"
-                    aria-hidden="true"></i>
-                </a>
-              
-              </div>
-            </div>
-            <div class="account-wrap"></div>
-          </div>
-        </div>
-      </header>
-      <!-- END HEADER DESKTOP--><a href="/loggout" class="au-btn-submit">Logged Out</a>
-  
+<nav style="padding-bottom:1em;" class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a  style="font-size: x-large;color: black;font-style:inherit;" class="navbar-brand" href="#">Warriors collection</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+  <!-- <li class="nav-item dropdown">
+    <a  style="display:inline-block;"  class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Collections</a>
+    <div class="dropdown-menu" style="display:inline;">
+      <a class="dropdown-item" href="#">WOMEN</a>
+      <a class="dropdown-item" href="#">MEN</a>
+      <a class="dropdown-item" href="#">ACCESSORIES</a>
+     <a class="dropdown-item" href="#">Housing</a>
+    </div>
+  </li> -->
+
+  <!--  -->
+
+
+
+  <!--  -->
+      <% if(!isAuthenticated){%>
+        <li class="nav-item">
+          <a  style="color: khaki;margin-left:35;" class="nav-link" href="/logout">Logout</a>
+        </li> 
+      <% }else{ %>  
+        <li class="nav-item">
+          <a style="color: khaki;" class="nav-link" href="/sign-up">Signup</a>
+        </li>
+
+        <li class="nav-item">
+          <a  style="color: khaki;" class="nav-link" href="/login">Login</a>
+        </li>
+      <% } %>
+      <li>
+         <a  style="margin-left:3em;color: khaki;" href="/order-history" class="nav-link">Order-History</a>
+      </li>
+      <li>
+          <a style="color: khaki;margin-left:3em;text-align:right;font-size:12px;"   class="nav-link"><%=fname%> </a>
+        </li>
+      <li>
+          <a href="/list-of-cart" class="nav-link" style="margin-left:65em;color:yellow;">
+            <span style="color:black;font-size: x-large;margin-right:em ;" class="glyphicon glyphicon-shopping-cart"></span>Cart
+          </a>
+        </li>
+        
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
 

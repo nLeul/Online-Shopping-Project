@@ -5,7 +5,7 @@ const path = require("path");
 const expressValidator = require("express-validator");
 const expressSession = require('express-session');
 const flash = require('connect-flash');
-const csrf = require('csurf');
+//const csrf = require('csurf');
 
 const userRoutes = require('./routers/routers.user');
 const productRoutes = require('./routers/routers.product');
@@ -38,6 +38,6 @@ app.use(productRoutes);
 mongoose.connect('mongodb://localhost:27017/online-shopping-project', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         app.listen(8088, () => {
-            console.log('Running on 8080');
+            console.log('Running on 8088');
         });
     }).catch(err => console.error(err));

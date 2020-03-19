@@ -8,20 +8,21 @@
             <div class="container-fluid">
                 <div class="row">
                     <% for(let products of productsList){ %>
-                    <div class="col-md-2">
-                        <div class="product-box">
-                            <img src="<%=products.image%>" class="img-responsive" alt="image not found">
-                            <h1>Name: <%=products.name%></h1>
-                            <h1>Price: <%=products.price%><span>&#36</span></h1>
-                            <div class="price">Category: <%=products.category%></div>
-                            <div class="price">Description: <%=products.description%></div>
-                            <a href="/details/<%=products._id%>" class="btn btn-warning">View Details</a>
+                        <div class="col-md-3">
+                            <div class="panel panel-info">
+                                <div class="flex-container">
+
+                            <div class="panel-body"><img src="<%=products.image%>" class="img-responsive" alt="image not found"></div>
+                             </div> <div class="panel-body">
+                            <h3> <%=products.name%></h3>
+                            <h5>Price: <%=products.price%><span>&#36</span></h5>
+                           <a href="/details/<%=products._id%>" class="btn btn-warning">View Details</a>
                         </div>
                     </div>
-
+                  </div>
                     <% }%>
 
-
+                </div>
 
                 </div>
 

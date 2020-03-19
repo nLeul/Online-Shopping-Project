@@ -1,23 +1,29 @@
 <%- include('../includes/head.ejs') %>
 <body>
 
+   
+
     <%- include('../includes/navigation.ejs') %>
     <div class="main-content">
         <div class="section-content section-content-p30">
             <div class="container-fluid">
-                <a href="/list-of-cart" class="btn btn-info">All Carts</a>
-                <a href="/order-history" class="btn btn-info">Order History</a>
+               
+   
+            <div class="container">
                 <div class="row">
                     <% for(let products of productsList){ %>
-                    <div class="col-md-2">
-                        <div class="product-box">
-                            <img src="<%=products.image%>" class="img-responsive" alt="image not found">
-                            <h1>Name: <%=products.name%></h1>
-                            <h1>Price: <%=products.price%> <span>&#36</span></h1>
-                            <div class="price"> Catagory:<%=products.category%> </div>
-                            <div class="price">Description:<%=products.description%></div>
-                    
-                            <a href="/details/<%=products._id%>" class="btn btn-warning">View Details </a>
+                    <div class="col-md-3">
+                        <div class="panel panel-info">
+                            <div class="flex-container">
+
+                            
+                         <div class="panel-body"><img src="<%=products.image%>" width="130px" height="130px" alt="Image"></div>
+                           
+                            </div> <div class="panel-body">
+                                 <h4 class="price"> <%=products.name%></h4>
+                            <h4 class="price">Price: <%=products.price%> <span>&#36</span></h4>
+                   
+                            <a style="font-size: medium;" href="/details/<%=products._id%>" class="">View Details </a>
                             <form method="POST" action="/add-to-product">
                                 <input type="hidden" name="id" value="<%=products.id%>"><br>
                                 <div>
@@ -30,6 +36,7 @@
                                 </div><br>
                                 <button class="btn btn-info">add to Cart </button>
                             </form>
+                            </div>
                         </div>
                     </div>
 
@@ -38,12 +45,6 @@
                 </div>
 
             </div>
-
-        </div>
-
-    </div>
-
-
     <%- include('../includes/footer')%>
 </body>
 

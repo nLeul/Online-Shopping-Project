@@ -6,7 +6,7 @@ const Order = require('../models/model.order');
 
 //
 exports.getProdPage = (req, res, next) => {
-    res.render('../views/product/add-products', { title: "Add-Products",isAuthenticated:true});
+    res.render('../views/product/add-products', {fname:"Hi, "+req.session.user.firstname, title: "Add-Products",isAuthenticated:true});
 };
 
 exports.saveProduct = (req, res, next) => {
@@ -30,7 +30,8 @@ exports.getHomePage = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
-            res.render('index', { productsList: prds,isAuthenticated: true,title: 'Products-List' });
+
+            res.render('index', { fname:"", productsList: prds,isAuthenticated: true,title: 'Products-List' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -40,7 +41,7 @@ exports.getAdminPrds = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
-            res.render('product/admin-list-of-prds', { productsList: prds,isAuthenticated: false, title: 'admin-products' });
+            res.render('product/admin-list-of-prds', { fname:"Hi, "+req.session.user.firstname,productsList: prds,isAuthenticated: false, title: 'admin-products' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -50,7 +51,7 @@ exports.getCustomerPrds = (req, res, next) => {
     Product.find()
         .then(result => {
             let prds = ProductService.converterToImage(result);
-            res.render('product/customer-list-of-prds', { productsList: prds,isAuthenticated: false,title: 'customer-products' });
+            res.render('product/customer-list-of-prds', { fname:"Hi, "+req.session.user.firstname,productsList: prds,isAuthenticated: false,title: 'customer-products' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -61,10 +62,9 @@ exports.getEditPage = (req, res, next) => {
     const productId = req.params.prodId;
     Product.findById(productId)
         .then(result => {
-            res.render("../views/product/edit-page", { product: result, title: 'Edit-Page',isAuthenticated:true });
+            res.render("../views/product/edit-page", {fname:"Hi, "+req.session.user.firstname,product: result, title: 'Edit-Page',isAuthenticated:true });
         })
         .catch(err => console.log(err));
-
 };
 
 
@@ -91,7 +91,6 @@ exports.deleteProduct = (req, res, next) => {
              res.redirect("/admin-prds");
         })
         .catch(err => console.log(err));
-
 };
 
 exports.getDetailsOfProduct = (req, res, next) => {
@@ -101,7 +100,7 @@ exports.getDetailsOfProduct = (req, res, next) => {
         .then(result => {
             let tempArr = []; tempArr.push(result);
             tempArr = ProductService.converterToImage(tempArr);
-            res.render('../views/product/details', { products: tempArr[0], title:"Product-details",isAuthenticated:false});
+            res.render('../views/product/details', { fname:"",products: tempArr[0], title:"Product-details",isAuthenticated:false});
         })
         .catch(err => console.log(err));
         ProductService.clearFolder();
@@ -161,7 +160,7 @@ exports.listOfCart = (req,res,next)=>{
                 totalPrice+=(p.price*qtyArr[count])
             }
         
-            res.render('product/cartsPage', { cartId:cart._id, productsList: prds,totalPrice:totalPrice, qty:qtyArr ,isAuthenticated: false, title: 'carts' });
+            res.render('product/cartsPage', { fname:"Hi, "+req.session.user.firstname,cartId:cart._id, productsList: prds,totalPrice:totalPrice, qty:qtyArr ,isAuthenticated: false, title: 'carts' });
         })
         .catch(err => console.log(err));
      ProductService.clearFolder();
@@ -183,8 +182,9 @@ exports.deleteFromCart = (req,res,next)=>{
 }
 
 exports.payment = (req,res,next)=>{
-    // console.log(req.params.tprice +"   "+req.params.cid);
-     res.render('product/thanks', { totalprice:req.params.tprice,cartId:req.params.cid ,isAuthenticated: false, title: 'Thanks' })
+    // console.log(req.params.tprice +"   "+req.params.cid);  <%=(totalprice+(totalprice*0.05))%>
+     let totalwithTax =( Number(req.params.tprice)+(Number(req.params.tprice)*0.05)).toFixed(2);
+     res.render('product/thanks', { fname:"Hi, "+req.session.user.firstname,totalprice:req.params.tprice,cartId:req.params.cid,totalwithTax:totalwithTax ,isAuthenticated: false, title: 'Thanks' })
 }
 
 exports.checkOut = (req,res,next)=>{
@@ -192,12 +192,13 @@ exports.checkOut = (req,res,next)=>{
       .then(order =>{ 
           if(order){
             allPidPriceMethod(req.session.user._id, req.params.cid, 0);
-            //res.render('product/thanks', { isAuthenticated: false, title: 'Thanks' })
-            res.redirect('/customer-prds');
+            res.render('../views/endpage',{fname:"Hi, "+req.session.user.firstname,isAuthenticated:false,title:"Thank-you-page"});
+            // res.redirect('/customer-prds');
           }else{
             allPidPriceMethod(req.session.user._id, req.params.cid, 1);
             //res.render('product/thanks', { isAuthenticated: false, title: 'Thanks' })
-            res.redirect('/customer-prds');
+            res.render('../views/endpage',{fname:"Hi, "+req.session.user.firstname,isAuthenticated:false,title:"Thank-you-page"});
+            // res.redirect('/customer-prds');
           }
       })
       .catch(e=>console.log(e));
@@ -231,7 +232,7 @@ display.push({ name:pobj.name , newPrice:pobj.price, image:pobj.image, oldPrice:
            }
         }
          console.log(display);
-        res.render('product/history', { historyArr: display ,isAuthenticated: false, title: 'history' });
+        res.render('product/history', {fname:"Hi, "+req.session.user.firstname, historyArr: display ,isAuthenticated: false, title: 'history' });
         });
     })
     .catch(e=>console.log(e));
@@ -283,3 +284,6 @@ function allPidPriceMethod(uid,cartId,separator){
      .catch(e=>console.log(e));
      Cart.deleteOne({_id : cartId}).then(a=>{});
 } 
+exports.aboutUs=(req,res,next)=>{
+    res.render('about-us',{fname:"",isAuthenticated:true,title:"About us"})
+}

@@ -1,6 +1,10 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<%- include('../includes/head.ejs') %>
+
+<body>
+
+    <%- include('../includes/navigation.ejs') %>
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container wrapper">
@@ -9,13 +13,13 @@
                 <div class="row">
                     <p></p>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div style="display: table; margin: auto;">
                         <span class="step step_complete"> <a href="#" class="check-bc">Cart</a> <span class="step_line step_complete"> </span> <span class="step_line backline"> </span> </span>
                         <span class="step step_complete"> <a href="#" class="check-bc">Checkout</a> <span class="step_line "> </span> <span class="step_line step_complete"> </span> </span>
                         <span class="step_thankyou check-bc step_complete">Thank you</span>
                     </div>
-                </div>
+                </div> -->
                 <div class="row">
                     <p></p>
                 </div>
@@ -27,13 +31,12 @@
                     <!--REVIEW ORDER-->
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            Review Order <div class="pull-right"><small><a class="afix-1" href="#">Edit Cart</a></small></div>
+                            Review Order <div class="pull-right"><small><a class="afix-1" href="/list-of-cart">Edit Cart</a></small></div>
                         </div>
                         <div class="panel-body">
                             
                            
                           
-                         
                             <div class="form-group"><hr /></div>
                             <div class="form-group">
                                 <div class="col-xs-12">
@@ -55,7 +58,7 @@
                             <div class="form-group">
                                 <div class="col-xs-12">
                                     <strong>Order Total</strong>
-                                    <div class="pull-right"><span>$</span><span><%=(totalprice+(totalprice*0.05))%></span></div>
+                                    <div class="pull-right"><span>$</span><span><%=totalwithTax%></span></div>
                                 </div>
                             </div>
                         </div>
@@ -157,3 +160,5 @@
         
             </div>
     </div>
+    
+    <%- include('../includes/footer')%>
