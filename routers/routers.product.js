@@ -2,13 +2,16 @@ const router = require('express').Router();
 const productController = require('../controllers/controllers.product');
 const Authontication = require('../middleware/authentication');
 const Permit = require('../middleware/authorization');
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({storage: storage});
 
 //below all about admin
 router.get("/savePrd", Authontication, Permit('admin'), productController.getProdPage);
 router.post("/save-product", Authontication, Permit('admin'), productController.saveProduct);
 
 router.get('/Edit-product/:prodId', Authontication, Permit('admin'), productController.getEditPage);
-router.post("/post-prod", Authontication, Permit('admin'), productController.postEditedProduct);
+router.post("/post-prod", upload.single('image'), Authontication, Permit('admin'), productController.postEditedProduct);
 
 router.post("/delete-product", Authontication, Permit('admin'), productController.deleteProduct);
 

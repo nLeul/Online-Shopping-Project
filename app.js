@@ -6,6 +6,10 @@ const expressValidator = require("express-validator");
 const expressSession = require('express-session');
 const flash = require('connect-flash');
 const csrf = require('csurf');
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
 
 const userRoutes = require('./routers/routers.user');
 const productRoutes = require('./routers/routers.product');

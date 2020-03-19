@@ -14,7 +14,8 @@ exports.saveProduct = (req, res, next) => {
         name: req.body.name,
         category: req.body.category,
         price: req.body.price,
-        image: ProductService.convertToBase64(req.body.image),
+        image: req.file.buffer.toString('base64'),
+        // image: ProductService.convertToBase64(req.body.image),
         description: req.body.description
     });
     //console.log(product);
