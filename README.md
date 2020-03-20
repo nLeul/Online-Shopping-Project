@@ -6,7 +6,7 @@ _**Code Warriors:** Abel Nedi, Seble Aygoda, Leul Necha, Michael Fitzgerald_
 
 Link to the Heroku app:
 
-- https://online-shopping-project-cw.herokuapp.com
+- https://warriorscollection.herokuapp.com/
 
 
 
