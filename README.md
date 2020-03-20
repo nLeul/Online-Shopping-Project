@@ -10,7 +10,7 @@ Link to the Heroku app:
 
 
 
-This is the Code Warrior's final group project for CS 477: Server-side Programming. In addition to the features listed in the original project speculation, extra features include:
+This is the Code Warrior's final group project for CS 477: Server-side Programming. In addition to the features listed in the original project specification, extra features include:
 
 - Validate users' inputs and provide error messages
 - Upload picture directly as a file using Multer (not as a path or URL)
