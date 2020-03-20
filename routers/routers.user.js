@@ -25,4 +25,6 @@ routes.get('/details/:prodId', productController.getDetailsOfProduct);
 
 
 
+
+
 module.exports = routes;   //abelnedi85@gmail.com

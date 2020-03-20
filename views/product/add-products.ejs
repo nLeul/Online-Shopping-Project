@@ -8,7 +8,7 @@
 
           <!-- below is add form ====>  start -->
           <div class="container">
-            <form action="/save-product" method="POST">
+            <form action="/save-product" enctype="multipart/form-data" method="POST">
            <!-- id -->
                 <input type="hidden" name="_id" class="form-control" id="inputEmail4" placeholder="Product Id">
             <!-- pdt name -->
@@ -28,8 +28,10 @@
             <!-- pdt image -->
             <div class="row">
               <div class="form-group col-md-6">
-              <label for="inputAddress2">Image</label>
-              <input type="text" name="image" class="form-control" id="inputAddress2" placeholder="Image Url">
+              <label for="image">Select image: </label>
+              <input type="file" name="image" id="image" accept=".png">
+              <!-- <label for="inputAddress2">Image</label>
+              <input type="text" name="image" class="form-control" id="inputAddress2" placeholder="Image Url"> -->
             </div>
             </div>
             <!-- pdt category -->
